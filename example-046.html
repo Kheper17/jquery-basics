@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Animation Effects</title>
+<style type="text/css">	
+	img {position:absolute; top:100px; left:100px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("button").click(function() {
+			$("img").animate({
+				left: 300
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+	<button> animate </button>
+	<img src="images/we-love-canada_3x3cm.png" alt="Canada">
+	
+</body>
+</html>

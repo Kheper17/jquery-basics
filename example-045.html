@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Show and Hide</title>
+<style type="text/css">	
+	button {position:absolute; top:180px}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Display alert message after slide toggling paragraphs
+		$(".toggle-btn").click(function(){
+			$("p").slideToggle(1000, function(){
+				// Code to be executed
+				alert("L'effet de fondu à bascule est terminé.");
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p class="normal">normal</p>
+	<p class="fast">fast</p>
+	<p class="slow">slow</p>
+	<p class="very-fast">Very fast</p>
+	<p class="very-slow">Very slow</p>
+	<button class="toggle-btn">Slide Toggle</button>
+</body>
+</html>

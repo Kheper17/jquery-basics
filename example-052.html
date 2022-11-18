@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Stop Animations</title>
+<style type="text/css">	
+	img {    
+		position: absolute; /* important sinon ça ne marche pas ! */
+	    background-color: #abc;
+	    top: 50px; left: 50px;
+	}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Kill and toggle the current sliding animation
+		$(".toggle-btn").on("click", function(){
+			$("img").stop().slideToggle(2000);
+		});
+	});
+</script>
+</head>
+<body>
+
+	<button class="toggle-btn"> Toggle </button>
+	<img src="images/we-love-canada_3x3cm.png" alt="">
+
+</body>
+</html>

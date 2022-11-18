@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Sliding Effect</title>
+<style type="text/css">	
+	button {position:absolute; top:40px;}
+	.down-btn {left:80px;}
+
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Slide up displayed paragraphs
+		$(".up-btn").click(function(){
+			$("p").slideUp();
+		});
+		// Slide down hidden paragraphs
+		$(".down-btn").click(function(){
+			$("p").slideDown();
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p>Hello, World!</p>
+	<button class="up-btn">Slide up</button>
+	<button class="down-btn">Slide down</button>
+</body>
+</html>

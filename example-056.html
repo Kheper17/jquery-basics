@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Chaining</title>
+<style type="text/css">	
+	.test {font-size:24px; color:lime;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("button").click(function(){
+			// This will work
+			$("h1").html("Hello World!").addClass("test");
+			// This will NOT work
+			$("p").html().addClass("test");
+		});
+	});
+</script>
+</head>
+<body>
+	<button> Animate </button>
+	<h1>title</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat quibusdam eos aperiam ipsam magnam at tempore dolorem. Tenetur reprehenderit numquam odio provident sit iste eos officiis! Unde earum alias nemo.</p>
+
+</body>
+</html>

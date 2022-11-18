@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Show and Hide</title>
+<style type="text/css">	
+	button {position:absolute; top:80px}
+	.down-btn {left:80px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Display alert message after sliding up paragraphs
+		$(".up-btn").click(function(){
+			$("p").slideUp("slow", function() {
+				// Code to be executed
+				alert("Le fondu vers le haut est terminé.");
+			});
+		});
+		// Display alert message after sliding down paragraphs
+		$(".down-btn").click(function(){
+			$("p").slideDown("slow", function(){
+				// Code to be executed
+				alert("Le fondu vers le bas est terminé.");
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum temporibus nisi ea blanditiis perspiciatis consequuntur, voluptatibus, asperiores, eius illum tenetur ratione reprehenderit quis excepturi voluptate quam laboriosam cumque natus sunt!</p>
+	<button class="up-btn">Slide up</button>
+	<button class="down-btn">Slide down</button>
+</body>
+</html>

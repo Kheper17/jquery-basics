@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Selection using ID</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Highlight table rows appearing in odd places (impair)
+		$("tr:odd").css("background", "yellow");
+		// Highlight table rows appearing in even places (pair)
+		$("tr:even").css("background", "orange");
+		// Highlight first paragraph element
+		$("p:first").css("background", "red");
+	});
+</script>
+</head>
+<body>
+	
+	<div id="mark">
+		<h1>Hello, World!</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum ullam, quaerat voluptates beatae. Consequatur minus, in culpa eaque adipisci modi omnis corporis maiores! Deleniti dignissimos alias, voluptate impedit ab, facilis.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum ullam, quaerat voluptates beatae. Consequatur minus, in culpa eaque adipisci modi omnis corporis maiores! Deleniti dignissimos alias, voluptate impedit ab, facilis.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum ullam, quaerat voluptates beatae. Consequatur minus, in culpa eaque adipisci modi omnis corporis maiores! Deleniti dignissimos alias, voluptate impedit ab, facilis.</p>
+	</div>
+	<table width="800" border="1" cellspacing="0" cellpadding="2">
+		<summary>Signes du zodiaque</summary>
+	  <tbody>
+	    <tr>
+	      <th scope="col">Signe</th>
+	      <th scope="col">Date tropicale (grégorien)</th>
+	      <th scope="col">élément</th>
+        </tr>
+	    <tr>
+	      <td>Bélier</td>
+	      <td>21 mars – 20 avril </td>
+	      <td>Feu</td>
+        </tr>
+	    <tr>
+	      <td>Taureau</td>
+	      <td>21 avril – 21 mai </td>
+	      <td>Terre</td>
+        </tr>
+	    <tr>
+	      <td>Gémeaux</td>
+	      <td>22 mai – 21 juin </td>
+	      <td>Air</td>
+        </tr>
+	    <tr>
+	      <td>Cancer</td>
+	      <td>22 juin – 22 juillet</td>
+	      <td>Eau</td>
+        </tr>
+	    <tr>
+	      <td>Lion</td>
+	      <td>23 juillet – 22 août </td>
+	      <td>Feu</td>
+        </tr>
+	    <tr>
+	      <td>Vierge</td>
+	      <td>23 août – 22 septembre</td>
+	      <td>Terre</td>
+        </tr>
+	    <tr>
+	      <td>Balance</td>
+	      <td>23 septembre – 22 octobre </td>
+	      <td>Air</td>
+        </tr>
+	    <tr>
+	      <td>Scorpion</td>
+	      <td>23 octobre – 22 novembre </td>
+	      <td>Eau</td>
+        </tr>
+	    <tr>
+	      <td>Sagitaire</td>
+	      <td>23  novembre – 21 décembre </td>
+	      <td>Feu</td>
+        </tr>
+	    <tr>
+	      <td>Capricorne</td>
+	      <td>22  décembre – 20 janvier </td>
+	      <td>Terre</td>
+        </tr>
+	    <tr>
+	      <td>Verseau</td>
+	      <td>21 janvier – 18 février </td>
+	      <td>Air</td>
+        </tr>
+	    <tr>
+	      <td>Poissons</td>
+	      <td>19 février – 20 mars</td>
+	      <td>Eau</td>
+        </tr>
+      </tbody>
+	</table>
+
+	
+</body>
+</html>

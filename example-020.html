@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Event</title>
+<style type="text/css">	</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var x = document.getElementById("caddy").options;
+		console.log(x);
+		$("select").change(function(){
+			var selectedOption = $(this).find(":selected").val();
+			alert("Vous avez sélectionné - " + selectedOption);
+		});
+	});
+</script>
+</head>
+<body>
+	
+
+		<select name="caddy" id="caddy">
+			<option value="0" selected="selected">Le panier</option>
+			<option value="fruits">Fruits</option>
+			<option value="légumes">Légumes</option>
+			<option value="laitage">Laitage</option>
+			<option value="viande">Viande</option>
+			<option value="poisson">Poisson</option>
+		</select>
+
+	
+</body>
+</html>

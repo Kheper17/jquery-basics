@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Event</title>
+<style type="text/css">	</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input").blur(function(){
+			$(this).next("span").show().fadeOut("slow");
+		});
+	});
+</script>
+</head>
+<body>
+	
+
+		<input type="text"><span><-- focus this first!</span><br>
+		<input type="text">
+
+	
+</body>
+</html>

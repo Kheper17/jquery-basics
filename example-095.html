@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Dimensions</title>
+<style type="text/css">	
+	#box {
+		width:300px; height:200px; 
+		margin:20px; 
+		padding:10px;
+		border:5px dashed green;
+	}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("button").click(function(){
+			$("#box").outerWidth(400).outerHeight(300);
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="box">The Box</div>
+	<button> SET outer Width & Height of the box </button>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery Filtering</title>
+<style type="text/css">
+	.highlight {background: yellow;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("ul li").eq(-2).addClass("highlight");
+	});
+</script>
+</head>
+<body>
+	<ul>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+		<li>Last list item</li>
+	</ul>
+</body>
+</html>

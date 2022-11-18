@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Add and Remove CSS Classes</title>
+<style type="text/css">	
+	.page-header{color: red; text-transform: uppercase;}
+	.highlight{background: yellow;}
+	.demo {color:blue; font-weight: 700;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("button").click(function(){
+			$("h1").removeClass("page-header");
+			$("p").removeClass("hint highlight");
+		});
+	});
+</script>
+</head>
+<body>
+	<h1 class="page-header">Title h1</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore deleniti placeat earum molestias architecto obcaecati, quae harum, dicta nam eaque iusto quas! Hic non repellendus quibusdam asperiores tempore accusamus sequi.</p>
+	<p class="hint demo highlight"><strong>Tip:</strong> Lorem Ipsum is dummy text.</p>
+	<button type="button">Remove Class</button>
+</body>
+</html>

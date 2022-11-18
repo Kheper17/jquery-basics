@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Getters and Setters</title>
+<style type="text/css">	
+	div {width:120px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Check all the checkboxes
+		$("button").click(function(){
+			$('input[type="checkbox"]').attr("checked", "checked");
+		});
+	});
+</script>
+</head>
+<body>
+	<button>Set Checked</button>
+	<div>
+		<input name="item1" type="checkbox" value="rhum">
+		<label for="item1">Du rhum</label><br>
+		
+		<input name="item2" type="checkbox" value="women">
+		<label for="item2">Des femmes</label><br>
+		
+		<input name="item3" type="checkbox" value="beer">
+		<label for="item3">et d'l bière</label><br>
+		nom de dieu ! <!-- Poésie du soir, bonsoir -->
+	</div>
+	<!-- https://www.youtube.com/watch?v=XcYng3TGq9E -->
+	
+</body>
+</html>

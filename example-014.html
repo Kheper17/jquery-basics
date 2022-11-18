@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mouse Events</title>
+	<style type="text/css">
+		.highlight {background-color: lime;}
+	</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("p").hover(function(){
+				$(this).addClass("highlight");
+			}, function(){
+				$(this).removeClass("highlight");
+			});
+		});
+	</script>
+</head>
+<body>
+	
+	<div>
+		<p>Hello, World!</p>
+	</div>
+	
+</body>
+</html>

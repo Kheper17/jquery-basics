@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Insert Content</title>
+<style type="text/css">	
+	.wrapper, .container {margin:10px; padding:10px;}
+	.wrapper {background-color: lime;}
+	.container {
+		width:300px; height:150px; 
+		border:thin dotted red; 
+		background-color: #fff;
+	}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Wrap elements with class container with HTML
+		$(".container").wrap('<div class="wrapper"></div>');
+		// Wrap paragraph's content with HTML
+		$("button").click(function(){
+			$("p").contents().wrap("<em><b></b></em>");
+		});
+	});
+</script>
+</head>
+<body>
+	<button> wrap praragraph </button>
+	<div class="container">
+		<p>Ceci n'est pas une pipe!</p>
+		<!-- And the marmot puts the chocolate in the aluminum foil -->
+	</div>
+
+</body>
+</html>

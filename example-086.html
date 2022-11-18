@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Get and Set CSS Properties</title>
+<style type="text/css">	
+div{
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	cursor: pointer;
+	display: inline-block;
+}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("div").click(function(){
+		var color = $(this).css("background-color");
+			$("#result").html(color);
+		});
+	});
+</script>
+</head>
+<body>
+	<div style="background-color:blue;"></div>
+	<div style="background-color:#008000;"></div>
+	<div style="background-color:rgb(255,0,0);"></div>
+	<div style="background-color:#ffff00;"></div>
+	<p>The computed background-color property value of this DIV element is: <b id="result"></b></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery Filtering</title>
+<style type="text/css">
+	.highlight {background:  #FFF44F;} /* lemon yellow */
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("ul li").not(function(index){
+			return index % 2 !== 0;
+		}).addClass("highlight");
+	});
+</script>
+</head>
+<body>
+	<ul>
+		<li>Section 1</li>
+		<li>Section 2</li>
+		<li >
+			<ul>
+				<li>Section 2.1</li>
+				<li>Section 2.2</li>
+				<li>Section 2.3</li>
+			</ul>
+		</li>
+		<li>Section 3</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Add and Remove CSS Classes</title>
+<style type="text/css">	
+	p {padding: 10px; cursor: pointer; font: bold 16px sans-serif;}
+	.highlight{background: yellow;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("p").click(function(){
+			$(this).toggleClass("highlight");
+		});
+	});
+</script>
+</head>
+<body>
+	<p>Click on me to toggle highlighting.</p>
+	<p class="highlight">Click on me to toggle highlighting.</p>
+	<p>Click on me to toggle highlighting.</p>
+</body>
+</html>

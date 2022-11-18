@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Dimensions</title>
+<style type="text/css">	
+	#box {
+		width:300px; height:200px; 
+		margin:20px; 
+		padding:10px;
+		border:5px dashed green;
+	}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("button").click(function(){
+			var divWidth = $("#box").outerWidth(true);
+			var divHeight = $("#box").outerHeight(true);
+			$("#result").html("Outer Width: " + divWidth + ", " + "Outer Height: " + divHeight);
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="box">The Box</div>
+	<button> GET outer Width & Height of the box </button>
+	<span id="result"></span>
+</body>
+</html>

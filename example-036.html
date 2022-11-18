@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Fading Effects</title>
+<style type="text/css">	
+	button {position:absolute; top:80px}
+	.in-btn {left:80px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Toggles paragraphs display with fading
+		$(".toggle-btn").click(function() {
+			$("p").fadeToggle();
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt commodi iusto temporibus voluptas modi quis iste minima doloremque, totam, excepturi nobis! Aliquam reiciendis vitae id debitis in officia, consequatur velit.</p>
+	<button class="toggle-btn">bascule</button>
+	
+</body>
+</html>

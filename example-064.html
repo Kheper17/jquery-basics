@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Getters and Setters</title>
+<style type="text/css">	
+	img {position:absolute; top:40px; left:10px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Get href attribute value of first selected hyperlink
+		$(".btn-one").click(function(){
+			var str = $("a").attr("href");	
+			alert(str);
+		});
+		// Get alt attribute value of an image with ID sky
+		$(".btn-two").click(function(){
+			var str = $("img#sky").attr("alt");
+			alert(str);
+		});	
+	});
+</script>
+</head>
+<body>
+	<button class="btn-one">Get href</button>
+	<button class="btn-two">Get alt</button>
+	<a href="https://fr.wikipedia.org/wiki/Ciel" target="_bank">
+		<img id="sky" src="images/sky.jpg" alt="Le ciel">
+	</a>
+
+</body>
+</html>

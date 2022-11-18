@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Remove Elements And Attribute</title>
+<style type="text/css">	
+	.container {
+		margin:10px; padding:10px
+		width:300px; height:150px; 
+		border:thin dotted red; 
+		background-color: yellow;
+	}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Removes the paragraph's parent element
+		$("button").click(function(){
+			$("p").unwrap();
+		});
+	});
+</script>
+</head>
+<body>
+	<button> unwrap paragraph </button>
+	<div class="container">
+		<p class="hint">Ceci n'est pas une pipe!</p>
+		<p class="demo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel laudantium et veritatis perferendis ex officia accusamus sed accusantium ratione adipisci porro error voluptatum explicabo delectus possimus, sint perspiciatis ut quibusdam.</p>
+	</div>
+
+</body>
+</html>

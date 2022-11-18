@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Show and Hide</title>
+<style type="text/css">	
+	button {position:absolute; top:180px}
+	.show-btn {left:60px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Toggles paragraphs with different speeds
+		$(".toggle-btn").click(function(){
+			$("p.normal").toggle();
+			$("p.fast").toggle("fast");
+			$("p.slow").toggle("slow");
+			$("p.very-fast").toggle(50) ;
+			$("p.very-slow").toggle(2000);
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p class="normal">normal</p>
+	<p class="fast">fast</p>
+	<p class="slow">slow</p>
+	<p class="very-fast">Very fast</p>
+	<p class="very-slow">Very slow</p>
+	<button class="toggle-btn">toggle :-D</button>
+</body>
+</html>

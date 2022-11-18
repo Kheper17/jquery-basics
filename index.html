@@ -1,0 +1,1917 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Michel TISSIER">
+    <meta name="category" content="Documentation technique">
+    <meta name="copyright" content="2019 Michel TISSIER">
+    <meta name="description" content=" Web Designer Kit - jQuery Study
+ __      __      ___.     ________                .__                              ____  __.__  __   
+/  \    /  \ ____\_ |__   \______ \   ____   _____|__| ____   ____   ___________  |    |/ _|__|/  |_ 
+\   \/\/   // __ \| __ \   |    |  \_/ __ \ /  ___/  |/ ___\ /    \_/ __ \_  __ \ |      < |  \   __\
+ \        /\  ___/| \_\ \  |    `   \  ___/ \___ \|  / /_/  >   |  \  ___/|  | \/ |    |  \|  ||  |  
+  \__/\  /  \___  >___  / /_______  /\___  >____  >__\___  /|___|  /\___  >__|    |____|__ \__||__|  
+       \/       \/    \/          \/     \/     \/  /_____/      \/     \/                \/         
+
+     __ ________                                                __              .___        
+    |__|\_____  \   __ __   ____  _______  ___.__.      _______/  |_  __ __   __| _/ ___.__.
+    |  | /  / \  \ |  |  \_/ __ \ \_  __ \<   |  |     /  ___/\   __\|  |  \ / __ | <   |  |
+    |  |/   \_/.  \|  |  /\  ___/  |  | \/ \___  |     \___ \  |  |  |  |  // /_/ |  \___  |
+/\__|  |\_____\ \_/|____/  \___  > |__|    / ____|    /____  > |__|  |____/ \____ |  / ____|
+\______|       \__>            \/          \/              \/                    \/  \/     
+">
+    <meta name="generator" content="Sublime Text">
+    <meta name="keywords" content="JavaScript, jQuey">
+    <meta name="publisher" content="Michel TISSIER">
+	<title>jQuery</title>
+	<style type="text/css">
+		/* variable */
+		:root{ 
+			--red: #FF7E7E; 
+			--green: #88FF7A;
+			--blue: #7EC4FF ;
+			--rainbow: to right, #ffdd3a, #ffdd3a 12.5%, #ffa03c 12.5%,	#ffa03c 25%, #e45b5b 25%, #e45b5b 37.5%, #e678dc 37.5%,	#e678dc 50%, #6b96d5 50%,	#6b96d5 62.5%, #3cc0dc 62.5%,	#3cc0dc 75%, #40d26e 75%, #40d26e 87.5%, #cff417 87.5%, #cff417 100%, #cff417 100%;
+			/* Liberty Gun Beer Trump bbQ  */
+		}
+		body {font-size:18px;}
+		section {margin:20px; padding:20px;}
+		.abstract, .keywords, .various {
+		  margin: 10px 0;
+		  border: 1px solid #d1d1d1; }
+		  .abstract span, .keywords span, .various span {
+			font-weight: bold;
+			font-size: 105%; }
+		.alert{color:red; font-weight: bolder;}
+		.stabilo {background-color:#FFF682;}
+		.stabilo-R {background-color:var(--red);}
+		.stabilo-G {background-color:var(--green);}
+		.stabilo-B {background-color:var(--blue);}
+		.font-R {color:var(--red);}
+		.font-G {color:var(--green);}
+		.font-B {color:var(--blue);}
+		.syntax, .syntax-font {font-family: monospace; color:666; font-size:110%;}
+		.syntax {
+			display: inline;
+			margin:0; 
+			padding:8px; 
+			border:thin dotted #999;
+		}
+		.syntax-object {color:blue;}
+		.syntax-selector {color:blueviolet;}
+		.syntax-method {color:gold;}
+		.syntax-parameter {color:mediumpurple;}
+		.yes {background-color:#4EF341;}
+		.no {background-color: #EF2D30;}
+		h2 {display:inline-block;}
+		pre, code {background-color: #F9F9F9; padding:8px;}
+		span.rainbow {display:inline-block; width:100px; height:16px;}
+		.rainbow {background-image: linear-gradient(var(--rainbow));}
+		.top {/* pot eau, top eau */}
+		.top a {text-decoration: none;}
+		
+		.table ol li, .table ol li a, .li1 a { font-size:20px; font-weight:bold; text-decoration:none; color:black;}
+		.table ol li a, .li1 a {position:relative; transition: color 0.5s ease;}
+		.table ol li a:hover, .li1 a:hover {background:transparent;} 
+		.table ol li a:before, .li1 a:before {
+			content: "";                     /* graphic effect : sweep to left */
+			position:absolute;               /*    soon in next CSS3 courses   */
+			z-index: -1;                     /* ha ha ha ha > Fantomas laugh < */
+			top: 0; 
+			left: 0; 
+			right: 0; 
+			bottom: 0;											 /*  Funkagenda - What the fuck -      */
+			background-image: linear-gradient( var(--rainbow) ); /*  They know what is what            */
+			transform: scaleX(0);                                /*  But they don't know what is what  */ 
+			transform-origin: 100% 50%;                          /*  They just strut                   */
+			transition-property: transform;                      /*  What the fuck?                    */
+			transition-duration: 0.3s;                           /* https://www.youtube.com/watch?v=qFdAsAkWSAc */
+			transition-timing-function: ease-out;
+	    }
+	    .table ol li a:hover:before, .li1 a:hover:before {transform: scaleX(1);}
+		.table ol li ol li {font-size:18px; font-weight:normal;}
+		.table ol li ol li ol li{font-size:16px; font-weight:normal;}
+
+		.diagram-bpaa {
+			max-width:600px; 
+			border:thin dotted black; 
+			box-shadow: 5px 5px 5px #999;
+			font-family: "monospace", Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New"; 
+			font-size:24px;
+			text-align:center; 
+			color:#686868;
+		}
+		.parent, .child { padding:0 20px 20px 20px;}
+		.parent {margin:20px; background-color: cyan;}
+		.child {margin:0 20px;background-color: yellow;}
+		.tag {margin:0 0 20px 0; color:blue; font-size: 94%; }
+		.method {margin:4px 0; color:red; font-weight: bolder; text-align:left;}
+		.example-script {background-color:#fcf3c1 ;}
+		.example-image {background-color: #ebfcc1  ;}
+		figcaption {font-size:10px;}
+	</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+	<header>
+		<span id="top"></span>
+		<h1>Les bases de jQuery</h1>
+		<p class="various"><span>Auteur</span> : Michel TISSIER, <span>date</span> : 2019-11-04, <span>version</span>: 0.1</p>
+        <p class="abstract"><span>Résumé</span> : apprentissage des bases de jQuery en 18 chapitres et 120 exemples. </p>
+        <p class="keywords"><span>Mots clé</span> : HTML, CSS3, JavaScript, JQuery</p>
+		<p>jQuery est une bibliothèque JavaScript libre et multiplateforme créée pour faciliter l'écriture de scripts côté client dans le code HTML des pages web. La première version est lancée en janvier 2006 par John Resig.</p>
+		<ul>
+		  <li>Le site de jQuery : <a href="https://jquery.com/" target="_blank">https://jquery.com/</a></li>
+		  <li>Documentation jQuery :<a href="https://api.jquery.com/" target="_blank"> https://api.jquery.com/</a></li>
+		  <li>Wikipedia :<a href="https://fr.wikipedia.org/wiki/JQuery" target="_blank"> https://fr.wikipedia.org/wiki/JQuery</a></li>
+		  <li>jQuery Quick API Reference :<a href="https://oscarotero.com/jquery/" target="_blank"> https://oscarotero.com/jquery/</a> <span class="rainbow">&nbsp;</span></li>
+		  <li>Tutoriel :<a href="https://www.codecademy.com/learn/learn-jquery" target="_blank"> https://www.codecademy.com/learn/learn-jquery</a> - <a href="https://www.w3schools.com/jquery/" target="_blank">https://www.w3schools.com/jquery/</a></li>
+		</ul>	
+	</header>
+	<!-- //////////// TABLE //////////// -->	
+	<section id="table" class="table">
+		<hr>	
+		<span>Table</span>
+		
+	  <ol>
+		  <span class="li1"><a href="#introduction">Introduction</a></span>
+	    <li><a href="#chap01">Environnement de travail</a></li>
+		  <li><a href="#chap02">Pour commencer</a>
+		<ol>
+			  <li>Utiliser la librairie jQuery à partir du fichier téléchargeable.</li>
+			  <li>Utiliser jQuery à partir des CDN disponible</li>
+			  <li>Usage de jQuery</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap03">Syntaxe de jQuery</a>
+		<ol>
+			  <li>Le gestionnaire d'évènement</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap04">Sélecteurs jQuery</a>
+		<ol>
+			  <li>Sélection par l'ID</li>
+			  <li>Sélection par nom de classe</li>
+			  <li>Sélection par le nom de balise</li>
+			  <li>Sélection par l'attribut</li>
+			  <li>Sélection composée</li>
+			  <li>Sélecteur de jQuery</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap05">Les évènements jQuery</a>
+		<ol>
+			  <li>Evènement de souris (Mouse Event) 
+				<ol>
+				  <li>La méthode click()</li>
+				  <li>La méthode dblclick()</li>
+				  <li>La méthode hover()</li>
+				  <li>La méthode mouseenter()</li>
+				  <li>La méthode mouseleave()</li>
+				</ol>
+			  </li>
+			  <li>Evènement de clavier (Keyboard Event)
+				<ol>
+				  <li>La méthode keypress()</li>
+				  <li>La méthode keydown()</li>
+				  <li>La méthode keyup() </li>
+				</ol>
+			  </li>
+			  <li>Evènement de formulaire (Form Event)
+				<ol>
+				  <li>La méthode change() </li>
+				  <li>La méthode focus()</li>
+				  <li>La méthode blur()</li>
+				  <li>La méthode submit()</li>
+				</ol>
+			  </li>
+			  <li>Evènements de document et de fenêtre (document, window)
+				<ol>
+				  <li>La méthode ready()</li>
+				  <li>La méthode resize() </li>
+				  <li>La méthode scroll()</li>
+				</ol>
+			  </li>
+			</ol>
+		  </li>
+		  <li><a href="#chap06">Afficher / masquer (Show/Hide)</a>
+		<ol>
+			  <li>Comment utiliser show() / hide().</li>
+			  <li>La méthode toggle()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap07">Effets de fondu (Fade)</a>
+		<ol>
+			  <li>L'utilisation de fadeIn() / fadeOut()</li>
+			  <li>La méthode fadeToggle()</li>
+			  <li>La méthode fadeTo()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap08">Effets de glissement (Slide)</a>
+		<ol>
+			  <li>Les méthodes slideUp() / slideDown()</li>
+			  <li>La méthode slideToggle()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap09">Effets d'animation</a>
+		<ol>
+			  <li>La méthode animate()</li>
+			  <li>Animation simultanée de plusieurs propriétés
+				<ol>
+				  <li>Animation en file d'attente</li>
+				  <li>Utilisation des valeurs relatives</li>
+				  <li>Utilisation de valeurs prédéfinies</li>
+				</ol>
+			  </li>
+			  <li>Arrêter une animation
+				<ol>
+				  <li>La méthode stop()</li>
+				</ol>
+			  </li>
+			  <li>Enchaînement d'animation</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap10">Fonction de rappel (callback)</a></li>
+		  <li><a href="#chap11">Getters / Setters</a>
+		<ol>
+			  <li>La méthode text()</li>
+			  <li>La méthode html()</li>
+			  <li>La méthode attr()</li>
+			  <li>La méthode val()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap12">Insérer du contenu</a>
+		<ol>
+			  <li>La méthode append()</li>
+			  <li>La méthode preprend()</li>
+			  <li>Insertions multiples avec append() et preprend()</li>
+			  <li>La méthode before()</li>
+			  <li>La méthode after()</li>
+			  <li>Insertions multiples avec before() an after()</li>
+			  <li>La méthode wrap()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap13">Supprimer des éléments et des attributs</a>
+		<ol>
+			  <li>La méthode empty()</li>
+			  <li>La méthode remove()</li>
+			  <li>La méthode unwrap()</li>
+			  <li>La méthode removeAttr()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap14">Ajouter et supprimer des classes CSS</a>
+		<ol>
+			  <li>La méthode addClass()</li>
+			  <li>La méthode removeClass()</li>
+			  <li>La méthode toggleClass()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap15">Get / Set des propriétés CSS</a>
+		<ol>
+			  <li>La méthode css()</li>
+			  <li>Obtenir (get) une valeur de propriété CSS</li>
+			  <li>Définir (set) une valeur et propriété CSS</li>
+			  <li>Définir (set) de multiple valeurs et propriétés CSS</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap16">Les dimensions</a>
+		<ol>
+			  <li>Les méthodes width(), height()</li>
+			  <li>Les méthodes innerWidth(), innerHeight()</li>
+			  <li>Les méthodes outerWidth, outerHeight()</li>
+			</ol>
+		  </li>
+		  <li><a href="#chap17">Parcourir le DOM</a>
+		<ol>
+			  <li>Les ancêtres
+				<ol>
+				  <li>La méthode parents()</li>
+				  <li>La méthode parentsUntil()</li>
+				</ol>
+			  </li>
+			  <li>Les enfants
+				<ol>
+				  <li>La méthode children()</li>
+				  <li>La méthode find()</li>
+				</ol>
+			  </li>
+			  <li>La fratrie
+				<ol>
+				  <li>La méthode siblings()</li>
+				  <li>La méthode next()</li>
+				  <li>La méthode nextAll()</li>
+				  <li>La méthode nextUntill()</li>
+				  <li>La méthode prev()</li>
+				  <li>La méthode prevAll()</li>
+				  <li>La méthode prevUntill()</li>
+				</ol>
+			  </li>
+			</ol>
+		  </li>
+		  <li><a href="#chap18">Filtrage</a>
+		<ol>
+			  <li>La méthode first()</li>
+			  <li>La méthode last()</li>
+			  <li>La méthode eq()</li>
+			  <li>La méthode filter()</li>
+			  <li>La méthode has()</li>
+			  <li>La méthode not()</li>
+			  <li>La méthode slice()</li>
+			</ol>
+		  </li>
+		<span class="li1"><a href="#conclusion">Conclusion de la 1ère partie</a></span>
+	  </ol>
+		<hr>	
+	</section>
+
+<section id="introduction" class="introduction">
+  <h2>Introduction</h2>
+  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+  <p>A qui s'adresse ce cour ? </p>
+  <p>A tout ceux qui souhaite mettre un peu d'interactivité dans leur site internet, aborder la programmation JavaScript en douceur ou qui souhaite faire des animations sur mesure.</p>
+	<p>Et il y a-t-il des prérequis ?</p>
+	<p>Il faut absolument avoir une bonne compréhension de HTML5 et CSS3 qui constitue le cadre d'une page HTML. Ensuite parce que jQuery intégre beaucoup d'élément de CSS3 dans sa façon de filtrer ou de sélectionner les éléments de la page. </p>
+	<p>Cette première partie aborde les bases (events, contenu, CSS), les effets graphiques (show/hide, fade, slide, toggle, animate) et plusieurs concepts intermédiaires (get / set, callback, chainage, filtrage, pacourir le DOM). </p>
+	<p>Une deuxième partie sera consacré à Ajax dans jQuery dans un contexte de réalisation de site Web Mobile et Web App non native. On abordera les problèmes liés au <em>Responsive Web Design</em> ainsi qu'au développement Mobile et son optimisation. </p>	
+		
+		
+  </section>
+	
+	<!-- //////////// section //////////// -->	
+	<section id="chap01" class="chap01">
+
+		<h2>1. Environnement de travail</h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p class="top">Nous avons besoin d'un environnement de travail classique, un navigateur moderne avec les outils de développement, un éditeur de texte ou un IDE pour écrire du code et une connexion Internet (bien qu'on puisse s'en passé si on a déjà téléchargé la librairie jQuery). </p>
+	  <ul>
+		  <li>Navigateur moderne
+		    <ul>
+		      <li><a href="https://www.chromium.org/getting-involved/download-chromium" target="_blank"> Chromium</a>, <a href="https://www.mozilla.org/fr/firefox/developer/" target="_blank">Mozilla Firefox Dev Ed.</a> <a href="https://www.opera.com/fr" target="_blank">Opera</a>, <a href="https://brave.com/fr/" target="_blank">Brave</a>, Safari, MS Edge...</li>
+	        </ul>
+		  </li>
+		  <li>Outils developpeur
+			<ul>
+			  <li>Web Console</li>
+			  <li>Scratchpad / Ardoise JavaScript (Maj + F4)</li></ul></li>
+	  </ul>
+		<table width="800" border="1" cellspacing="0" cellpadding="2">
+		  <tr>
+			<th scope="col">Navigateur</th>
+			<th scope="col">Raccourcis</th>
+			<th scope="col">Menu</th>
+		  </tr>
+		  <caption>
+			Outils de développement des navigateurs
+		  </caption>
+		  <tbody>
+			<tr>
+			  <td>Brave</td>
+			  <td>Ctrl + Maj + i</td>
+			  <td>Menu / Plus d'outils / Outils de développement</td>
+		    </tr>
+			<tr>
+			  <td>Google Chrome</td>
+			  <td> Ctrl + Maj + i</td>
+			  <td>Menu / Plus d'outils / Outils de développement</td>
+			</tr>
+			<tr>
+			  <td>Mozilla Firefox</td>
+			  <td> Ctrl + Maj + i</td>
+			  <td>Menu / Développement Web / outils de développement</td>
+			</tr>
+			<tr>
+			  <td>Microsoft Edge</td>
+			  <td>F12</td>
+			  <td>Menu / Plus d'outils / Outils de développement</td>
+			</tr>
+			<tr>
+			  <td>Opera</td>
+			  <td> Ctrl + Maj + c</td>
+			  <td>&nbsp;</td>
+			</tr>
+			<tr>
+			  <td>Apple Safari</td>
+			  <td>Cmd + Option + k</td>
+			  <td>Menu / Préférences / Avancées / Afficher le menu développement ...</td>
+			</tr>
+		  </tbody>
+		</table>
+		<p>Pourquoi utiliser jQuery ?</p>
+		<ul>
+		  <li>C'est rapide à écrire.</li>
+		  <li>C'est plus simple que JavaScript</li>
+		  <li>C'est facile à utiliser.</li>
+		  <li>C'est compatible avec la majorité des grands navigateurs.</li>
+		  <li>C'est gratuit.</li>
+		</ul>
+
+	</section>
+	
+
+	<!-- //////////// section //////////// -->
+	<section id="chap02" class="chap02">
+
+		<h2>2. Pour commencer</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<h3>2.1 Utiliser la librairie jQuery à partir du fichier téléchargeable.</h3>
+		<p>Télécharger jQuery : <a href="https://jquery.com/download/" target="_blank">https://jquery.com/download/</a> <br>
+		  Vous aurez une version de développement et une version de production plus légère (min). Déposez la dans un dossier js/ à la racine de votre site puis lier la comme suit :
+		</p>
+		<p>Lier le fichier jQuery à votre page : </p>
+		<pre>&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>	&lt;meta charset=&quot;utf-8&quot;&gt;<br>	&lt;title&gt;Simple HTML Document&lt;/title&gt;<br>	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot;&gt;<br>	<span class="stabilo">&lt;script src=&quot;js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;</span><br>&lt;/head&gt;<br>&lt;body&gt;<br>	&lt;h1&gt;Hello, World!&lt;/h1&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</pre>
+		<h3>2.2 Utiliser jQuery à partir des <strong>CDN</strong> disponible</h3>
+		<ul>
+		  <li>Google jQuery CDN: <a href="https://developers.google.com/speed/libraries#jquery" target="_blank">https://developers.google.com/speed/libraries#jquery</a></li>
+		  <li>Microsoft jQuery CDN : <a href="https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview#jQuery_Releases_on_the_CDN_0" target="_blank">https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview#jQuery_Releases_on_the_CDN_0</a></li>
+		  <li>CDNJS : <a href="https://cdnjs.com/libraries/jquery/" target="_blank">https://cdnjs.com/libraries/jquery/</a></li>
+		  <li>JSDELIVR : <a href="https://www.jsdelivr.com/package/npm/jquery" target="_blank">https://www.jsdelivr.com/package/npm/jquery</a></li>
+		</ul>
+		<p>Il n'y a qu'à copier / coller le lien sans mettre le fichier en local. </p>
+				<pre>&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>	&lt;meta charset=&quot;utf-8&quot;&gt;<br>	&lt;title&gt;Simple HTML Document&lt;/title&gt;<br>	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot;&gt;<br>	<span class="stabilo">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br>&lt;/head&gt;<br>&lt;body&gt;<br>	&lt;h1&gt;Hello, World!&lt;/h1&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</pre>
+		<p>L'usage du CDN est conseillé dans le développement d'application mobile, mais on verra tout ça dans les optimisations d'interface mobile, la prochaine partie de ce cours. </p>
+		<p>&nbsp;</p>
+		<h3>2.3 Usage de jQuery</h3>
+		<ol>
+		  <li>La libraie jQuery doit toujours être chargé avant votre code, sinon ça marche pas :-D </li>
+		  <li>L'attibut <em>type= &ldquo;text/javascript&rdquo;</em> n'est pas nécessaire en HTML5, on peut l'utiliser quand même pour rendre le code plus lisible, si ça vous chante. </li>
+		</ol>
+		<p>Si on lie la librairie (en direct ou par CDN) dans le &lt;head&gt; de la page on doit attendre que le chargement de la page soit terminé pour lancer nos scripts. Pour cela on utilise une méthode simple : </p>
+<pre>&lt;script type="text/javascript"&gt;
+	<span class="stabilo">$(document).ready(function(){</span>
+
+		// mon code ici
+	<span class="stabilo">});</span>
+&lt;/script&gt;</pre>
+			<ul>
+			  <li>$ correspond à l'appel de la librairie, c'est 'équivalent de jQuery. </li>
+			  <li>Puis on cible <em>document</em> suivie de ready, ce qui signifie quand le document (la page) est prêt, sous entendu chargé. </li>
+			  <li>Alors la <em>function</em> lance le script. </li>
+		</ul>
+		<p>On doit toujours placer son code à l'intérieur de ce genre de lanceur (<strong>Ready Event</strong>) ; il y en a avec d'autres méthodes, celle-ci est la plus courante.</p>
+		<p>voir l'exemple-001 <a href="example-001.html" class="example-script" target="_blank">example-001.html</a></p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;h1&quot;).css(&quot;color&quot;, &quot;#0088ff&quot;);<br>	});<br>&lt;/script&gt;</pre>
+			<p>On change la couleur du titre avec un bout de code : voir l'exemple-002 <a href="example-002.html" class="example-script" target="_blank">example-002.html</a></p>
+		<ul>
+			  <li>Appel de jQuery avec le - $()</li>
+			  <li>On cible la balise h1 - $(&quot;h1&quot;)</li>
+			  <li>la méthode css() permet d'ajouter une règle de style a la cible (et donc à h1) - $("h1").css()</li>
+			  <li>on passe en paramètre à la méthode css() la <em>propriété</em> et la <em>valeur</em> correspondant à la règle css. <br>
+		  Ici c'est la <strong>propriété <em>color</em> </strong>et la <strong>valeur <em>#0088FF</em></strong> pour un bleu clair. </li>
+		</ul>
+
+	</section>
+
+
+	<!-- //////////// section //////////// -->
+  <section id="chap03" class="chap03">
+
+		<h2>3. Syntaxe de jQuery</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+			<ul>
+			  <li>On charge la librairie depuis un lien local ou depuis le réseau via un CDN.</li>
+			  <li>La librairie est toujours chargé en premier, avant le code personnel.</li>
+			  <li>Le chargement se fait entre des balises &lt;script&gt;
+				<ul>
+				  <li>soit dans le &lt;header&gt;</li>
+				  <li>soit en bas de page juste avant la balise de fermeture du &lt;/body&gt;</li>
+				</ul>
+			  </li>
+			  <li>On peut écrire les scripts personnels dans la page ou dans un page extérieure qui est chargé après la librairie. </li>
+			  <li>Un <strong><em>Ready Event</em></strong> doit toujours préparer le chargement de la page $(document).ready(handler)</li>
+			  <li>Les déclarations jQuery commencent généralement par un $ (signe dollar) et se terminent par; (un point-virgule).</li>
+			  <li>Les instructions jQuery utilisent des gestionnaires d'évènement (Event Handler) <span lang="fr"><span title="">$(sélecteur) .action ();</span></span></li>
+	    </ul>
+			<p>&nbsp;</p>
+			<span class="syntax">$(&quot;li.hot&quot;).addClass(&quot;furax&quot;);</span>
+    <ul>
+              <li>L'<strong>objet</strong> jQuery : <strong>$()</strong></li>
+              <li>L'objet jQuery et son <strong>sélecteur</strong> : $(&quot;<strong>li.hot</strong>&quot;)</li>
+              <li>L'<strong>opérateur</strong> qui attache la méthode à l'objet : <strong>.</strong> (un point)</li>
+              <li>La <strong>méthode</strong> : <strong>addClass()</strong></li>
+              <li>La méthode avec son <strong>paramètre</strong> : addClass(&quot;<strong>furax</strong>&quot;), dans ce cas le nom d'une classe CSS.</li>
+              <li>On termine par un <strong>; </strong>point virgule.</li>
+    </ul>
+			<p>&nbsp;</p>
+			<h3>3.1 Le gestionnaire d'évènement</h3>
+			<p>Pour effectuer des actions on utilise des gestionnaires d'évènements (Event Handler) avec jQuery. On pointe un élément appellé <strong>sélecteur</strong> sur lequel on applique une action (<strong>méthode</strong>) comme ceci : $(sélecteur).action()</p>
+			<p>On change le texte du paragraphe : voir l'exemple-003 <a href="example-003.html" class="example-script" target="_blank">example-003.html</a></p>
+			<pre>$("p").text("Hello World!");</pre>
+			<ul>
+			  <li><strong>$(&quot;p&quot;)</strong> sélectionne toutes les balises &lt;p&gt; de la page.</li>
+			  <li>La méthode <strong>text()</strong> permet d'insérer du texte. </li>
+		</ul>
+			<p>Le problème c'est que c'est fait juste après le chargement de la page. Essayons ajouter un évènement.</p>
+			<p>On ajoute un bouton pour provoquer le remplacement du texte par l'utilisateur : voir l'exemple-004 <a href="example-004.html" class="example-script" target="_blank">example-004.html</a></p>
+	  <pre>$("button").click(function(){
+	$("p").text("Hello World!");
+});</pre>
+			<ul>
+			  <li>      $(&quot;button&quot;) sélectionne toute les balises &lt;button&gt;</li>
+			  <li>On y applique la méthode .<strong>click() </strong></li>
+			  <li>Cette méthode lance une fonction générique qui contient :</li>
+			  <li>$(&quot;p&quot;) le sélecteur de toutes les balises &lt;p&gt; de la page.</li>
+			  <li>Sur ce sélecteur on applique la mééthode <strong>.text() </strong>qui ajoutera le texte qu'il contient.</li>
+		</ul>
+		<p>Mais il ajoutera le texte qu'il contient seulement au click sur le bouton. Remarquez comme les instructions sont imbriqués, l'action est dans le bouton. </p>
+
+</section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap04" class="chap04">
+
+		<h2>4. Sélecteurs jQuery</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+
+	  <p>L'utilisation la plus courante de JavaScript est de modifier des éléments HTML de la page. Il s'agit de sélectionner ou de créer des éléments puis de leurs appliquer des effets tel que afficher / masquer, animer ... jQuery facilite une sélection rapide des éléments HTML du DOM. </p>
+			<p>Donc avant d'appliquer un quelconque effet ou une action, vous devez attraper votre cible. Cela peut être une ID, une Class, une balise, un attribut de balise, tout ça à la fois ou plus.</p>
+			<p>&nbsp;</p>
+			<h3>4.1 Sélection par l'ID</h3>
+			<p>On utilise une ID quand on cherche à sélectionner un élément unique, car les ID sont toujours unique. Les ID sont généralement réservé pour l'usage de JavaScript dans les méthodes moderne de CSS.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight element with id mark<br>		<span class="stabilo">$(&quot;#mark&quot;).css(&quot;background&quot;, &quot;yellow&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>On reconnait le<em> Ready Event </em>qui préfigure chaque script dans une page. </p>
+	  <ul>
+			  <li><strong>$('#mark')</strong> vous noterez les guillemets pour le teste et le <strong>dièze</strong> (#) pour l'ID notre cible !</li>
+			  <li>auquel on applique la méthode <strong>css()</strong></li>
+			  <li>avec les <strong>paramètres</strong> : <strong>propriété</strong> <em>color</em>, <strong>valeur</strong> <em>yellow</em> (notez les guillemets hein!).</li>
+	  </ul>
+			<p>Voir la page d'exemple : <a href="example-005.html" class="example-script" target="_blank">Example-005.html</a></p>
+			<p>&nbsp;</p>
+		<h3>4.2 Sélection par nom de classe</h3>
+			<p>La sélection par nom de classe se fait sur le ou les éléments possédant la classe spécifique.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight element with class mark<br>		<span class="stabilo">$(&quot;.mark&quot;).css(&quot;background&quot;, &quot;yellow&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>Toujours le<em> Ready Event </em>qui lance le code au chargement de la page.</p>
+	  <ul>
+			  <li>$('.mark') notez les guillemets et le <strong>point</strong> devant le nom de la classe cible.</li>
+			  <li>auquel on applique la méthode <strong>css()</strong></li>
+			  <li>avec les <strong>paramètres</strong> : <strong>propriété</strong> <em>color</em>, <strong>valeur</strong> <em>yellow</em> (notez les guillemets).</li>
+	  </ul>
+			<p>Voir la page d'exemple : <a href="example-006.html" class="example-script" target="_blank">Example-006.html</a></p>
+			<p>&nbsp;</p>
+		<h3>4.3 Sélection par le nom de balise</h3>
+			<p>On peut simplement sélectionner un élément sur son nom de balise.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight element with p tag<br>		<span class="stabilo">$('p').css(&quot;background&quot;, &quot;yellow&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>Toujours le<em> Ready Event </em>, oui je sais je saoule. </p>
+	  <ul>
+			  <li>$('input[type=&quot;text&quot;]') notez les guillemets simple et double et la sélection d'attribut comme dans CSS.</li>
+			  <li>auquel on applique la méthode <strong>css()</strong></li>
+			  <li>avec les <strong>paramètres</strong> : <strong>propriété</strong> <em>color</em>, <strong>valeur</strong> <em>yellow</em> (notez les guillemets).</li>
+	  </ul>
+			<p>Voir la page d'exemple : <a href="example-007.html" class="example-script" target="_blank">Example-007.html</a></p>
+			<p>&nbsp;</p>
+		<h3>4.4 Sélection par l'attribut</h3>
+			<p>On peut sélectionner des éléments an se basant sur la valeur de leurs attributs.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight element with attribute tag<br>		<span class="stabilo">$('input[type=&quot;text&quot;]').css(&quot;background&quot;, &quot;yellow&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>Toujours le<em> Ready Event </em>, oui je sais...</p>
+	  <ul>
+			  <li>$('input[type=&quot;text&quot;]') notez les guillemets simple et double et la sélection d'attribut comme dans CSS.</li>
+			  <li>auquel on applique la méthode <strong>css()</strong></li>
+			  <li>avec les <strong>paramètres</strong> : <strong>propriété</strong> <em>color</em>, <strong>valeur</strong> <em>yellow</em> (notez les guillemets).</li>
+	  </ul>
+			<p>Voir la page d'exemple : <a href="example-008.html" class="example-script" target="_blank">Example-008.html</a></p>
+			<p>&nbsp;</p>
+		<h3>4.5 Sélection composée</h3>
+			<p>Les sélecteurs peuvent également être combinés pour rendre les choses plus précises. Un sélecteur de classe peut être combiné à un sélecteur d'élément pour rechercher des combinaisons spécifiques. </p>
+	  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight paragraph elements with class mark<br>		<span class="stabilo">$(&quot;p.mark&quot;).css(&quot;background&quot;, &quot;blue&quot;);</span><br>		// Highlight span elements inside the element with ID mark<br>		<span class="stabilo">$(&quot;#mark span&quot;).css(&quot;background&quot;, &quot;green&quot;);</span><br>		// Highlight li elements inside the ul elements<br>		<span class="stabilo">$(&quot;ul li&quot;).css(&quot;background&quot;, &quot;red&quot;);</span><br>		// Highlight li elements inside the ul element with id mark<br>		<span class="stabilo">$(&quot;ul#brand li&quot;).css(&quot;background&quot;, &quot;yellow&quot;);</span><br>		// <span lang="en"><span title="">Highlight a particular li element</span></span><br>		<span class="stabilo">$(&quot;ul li.brand&quot;).css(&quot;background&quot;, &quot;silver&quot;);</span><br>		// Highlight all anchor elements with target blank<br>		<span class="stabilo">$('a[target=&quot;_blank&quot;]').css(&quot;background&quot;, &quot;orange&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-009.html" class="example-script" target="_blank">Example-009.html</a></p>
+			<p>&nbsp;</p>
+		<h3>4.6 Sélecteur de jQuery</h3>
+			<p>En plus des sélecteurs définis par CSS, il existe également des sélecteurs personnalisés dans jQuery. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Highlight table rows appearing in odd places<br>		<span class="stabilo">$(&quot;tr:odd&quot;).css(&quot;background&quot;, &quot;yellow&quot;);</span><br>		// Highlight table rows appearing in even places<br>		<span class="stabilo">$(&quot;tr:even&quot;).css(&quot;background&quot;, &quot;orange&quot;);</span><br>		// Highlight first paragraph element<br>		<span class="stabilo">$(&quot;p:first&quot;).css(&quot;background&quot;, &quot;red&quot;);</span><br>	});<br>&lt;/script&gt;</pre>
+			<p>Ici on utilise impair (odd) et pair (even) et le premier (first). </p>
+			<p>Voir la page d'exemple : <a href="example-010.html" class="example-script" target="_blank">Example-010.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap05" class="chap05">
+
+		<h2>5. Les évènements jQuery</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+			<p>Les évènements jQuery sont déclenché par l'interaction avec un utilisateur. </p>
+			<ul>
+			  <li>Cliquer sur un lien ou sur un bouton</li>
+			  <li>Cliquer sur le bouton de la souris</li>
+			  <li>Taper du texte dans un champ</li>
+			  <li>Effectuer une sélection ou cocher une case</li>
+			  <li>Appuyer sur la touche du clavier</li>
+			  <li>Déplacer le pointeur de la souris</li>
+		</ul>
+			<p>Mais aussi avec le navigateur :</p>
+			<ul>
+			  <li>Chargement de la page</li>
+			  <li>Rechargement de la page</li>
+		</ul>
+			<p>Dans ce type de cas vous utiliserez des méthodes de ce genre :</p>
+			<ul>
+			  <li>ready()</li>
+			  <li>click()</li>
+			  <li>keypress()</li>
+			  <li>focus()</li>
+			  <li>change()</li>
+			  <li>blur()</li>
+		</ul>
+			<p>N'oubliez pas que le <em>Ready Event</em> en est un bon exemple :</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).<span class="stabilo">ready</span>(function(){<br>		// Code to be executed<br>		alert(&quot;Hello World!&quot;);<br>	});<br>&lt;/script&gt;</pre>
+			<p>L'événement $ (document) .ready() est utilisé pour sécurisé la page de façon à ce que le JavaScript ne soit lancé que lorsque la page est chargée et que le DOM est prêt à être manipulé. </p>
+			<p>Voir la page d'exemple : <a href="example-011.html" class="example-script" target="_blank">Example-011.html</a></p>
+			<p>On classera donc les évènements en quatre groupes :</p>
+			<ol>
+			  <li>Les évènements de souris (Mouse Event)</li>
+			  <li>Evènement de clavier (Keyboard Event)<br>
+			  </li>
+			  <li>Evènement de formulaire (Form Event)<br>
+			  </li>
+			  <li>Evènements de document et de fenêtre (document, window)</li>
+		</ol>
+			<table width="800" border="1" cellspacing="0" cellpadding="2">
+				<summary>Liste des méthodes par type d'évènement</summary>
+			  <tbody>
+				<tr>
+				  <th width="25%" bgcolor="#DADADA" scope="col">Mouse Event</th>
+				  <th width="25%" bgcolor="#DADADA" scope="col">Keybord Event</th>
+				  <th width="25%" bgcolor="#DADADA" scope="col">Form Event</th>
+				  <th width="25%" bgcolor="#DADADA" scope="col">Window Event</th>
+				</tr>
+				<tr>
+				  <td width="25%">click()</td>
+				  <td width="25%">keypress()</td>
+				  <td width="25%">change()</td>
+				  <td width="25%">ready()</td>
+				</tr>
+				<tr>
+				  <td width="25%">dblclick()</td>
+				  <td width="25%">keydown()</td>
+				  <td width="25%">focus()</td>
+				  <td width="25%">resize()</td>
+				</tr>
+				<tr>
+				  <td width="25%">hover()</td>
+				  <td width="25%">keyup()</td>
+				  <td width="25%">blur()</td>
+				  <td width="25%">scroll()</td>
+				</tr>
+				<tr>
+				  <td width="25%">mouseenter()</td>
+				  <td width="25%">&nbsp;</td>
+				  <td width="25%">submit()</td>
+				  <td width="25%">&nbsp;</td>
+				</tr>
+				<tr>
+				  <td width="25%">mouseleave()</td>
+				  <td width="25%">&nbsp;</td>
+				  <td width="25%">&nbsp;</td>
+				  <td width="25%">&nbsp;</td>
+				</tr>
+			  </tbody>
+		</table>
+			<p>La documentation pour la référence complète : <a href="https://api.jquery.com/category/events/" target="_blank">https://api.jquery.com/category/events/</a></p>
+			<ul>
+			  <li>Mouse Event : <a href="https://api.jquery.com/category/events/mouse-events/" target="_blank">https://api.jquery.com/category/events/mouse-events/</a></li>
+			  <li>Keyboard Event : <a href="https://api.jquery.com/category/events/keyboard-events/" target="_blank">https://api.jquery.com/category/events/keyboard-events/</a></li>
+			  <li>Form Event :<a href="https://api.jquery.com/category/events/form-events/" target="_blank"> https://api.jquery.com/category/events/form-events/</a></li>
+			  <li>Document Event :<a href="https://api.jquery.com/category/events/document-loading/" target="_blank"> https://api.jquery.com/category/events/document-loading/</a></li>
+			  <li>Browser Event : <a href="https://api.jquery.com/category/events/browser-events/" target="_blank">https://api.jquery.com/category/events/browser-events/</a></li>
+	    </ul>
+			<p>&nbsp;</p>
+			<h3>5.1 Evènement de souris (Mouse Event)</h3>
+			<p>Nous allons voir les évènements de souris les plus courants. </p>
+			<p>&nbsp;</p>
+			<h4>5.1.1 La méthode click()</h4>
+			<p>Cette méthode est déclenché par le click de l'utilisateur. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;)<span class="stabilo">.click</span>(function(){<br>			$(this).slideUp();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On applique la méthode <strong>click()</strong> sur l'élément &lt;p&gt; </li>
+			  <li>La fonction générique de <strong>click()</strong> lance la suite, </li>
+			  <li><strong>$(this)</strong> est une variable qui permet de retourner l'objet à lui même, ici <strong>$('p').click()</strong>. </li>
+			  <li>Et donc de lui appliquer une nouvelle méthode, ici <strong>slideup()</strong> (littéralement &quot;glisse vers le haut&quot;).</li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-012.html" class="example-script" target="_blank">Example-012.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.1.2 La méthode dblclick()</h4>
+		<p>Méthode identique à la précédente en dehors du <u>double click</u> au lieu du simple click.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;)<span class="stabilo">.dblclick</span>(function(){<br>			$(this).slideUp();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-013.html" class="example-script" target="_blank">Example-013.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.1.3 La méthode hover()</h4>
+		<p>Cette méthode associe souvent deux fonctions de gestion d'élément. Dans notre exemple on ajoute une classe CSS au survol et on la retire à la fin. </p>
+		<pre>	&lt;script type=&quot;text/javascript&quot;&gt;<br>		$(document).ready(function(){<br>			$(&quot;p&quot;).<span class="stabilo">hover</span>(function(){<br>				$(this).<span class="stabilo">addClass</span>(&quot;highlight&quot;);<br>			}, function(){<br>				$(this).<span class="stabilo">removeClass</span>(&quot;highlight&quot;);<br>			});<br>		});<br>	&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible la balise &lt;p&gt; avec $('p') </li>
+			  <li>On lui associe la méthode de détection de survol <strong>hover()</strong></li>
+			  <li>Cette méthode produit une première fonction générique
+				<ul>
+				  <li>grâce à la variable <strong>$(this)</strong> on applique la méthode <strong>addclass()</strong> sur $('p').hover()</li>
+				</ul>
+			  </li>
+			  <li>Cette méthode produit une seconde fonction générique
+				<ul>
+				  <li>grâce à la variable <strong>$(this)</strong> on applique la méthode <strong>removeclass()</strong> sur $('p').hover()</li>
+				</ul>
+			  </li>
+		</ul>
+			<p>C'est très amusant à regarder dans l'inspecteur de votre navigateur, on voit apparaître et disparaître la classe <em>highlight</em>. [<a href="images/img-001.png" target="_blank">images/img-001.png</a> ]</p>
+			<p>Voir la page d'exemple : <a href="example-014.html" class="example-script" target="_blank">Example-014.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.1.4 La méthode mouseenter()</h4>
+		<p>Cette méthode attache un gestionnaire d'évènement à un élément donné. Ici le fait que la souris soit sur l'élément. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).<span class="stabilo">mouseenter</span>(function(){<br>			$(this).<span class="stabilo">addClass</span>(&quot;highlight&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible la balise &lt;p&gt; avec <strong>$('p')</strong></li>
+			  <li>On lui applique la méthode <strong>mouseenter()</strong> qui détecte les survol de souris.</li>
+			  <li>On ajoute une <em>fonction générique</em> pour activer l'évènement</li>
+			  <li>On utilise la variable <strong>$(this)</strong> pour appliquer la méthode <strong>addclass()</strong> à $('p').mouseenter()</li>
+			  <li>La méthode<strong> addclass() </strong>permet d'ajouter un attribut <em>class</em> à la balise &lt;p&gt; et d'insérer la classe <em>highlight</em>.</li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-015.html" class="example-script" target="_blank">Example-015.html</a></p>
+			<p>&nbsp;</p>
+		<h4>5.1.5 La méthode mouseleave()</h4>
+			<p>Cette méthode attache un gestionnaire d'évènement à un élément donné et complète la précédente. Ici le fait que la souris soit sortie de l'élément, quelle l'ait quitté. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).<span class="stabilo">mouseleave</span>(function(){<br>			$(this).<span class="stabilo">removeClass</span>(&quot;highlight&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible la balise &lt;p&gt; avec <strong>$('p')</strong></li>
+			  <li>On lui applique la méthode <strong>mouseleave()</strong> qui détecte la sortie du survol de souris.</li>
+			  <li>On ajoute une <em>fonction générique</em> pour activer l'évènement.</li>
+			  <li>On utilise la variable <strong>$(this)</strong> pour appliquer la méthode <strong>removeclass()</strong> à $('p').mouseleave()</li>
+			  <li>La méthode<strong> removeclass() </strong>permet de supprimer toutes les classes présente dans l'attribut <em>class</em> de la balise &lt;p&gt;.</li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-016.html" class="example-script" target="_blank">Example-016.html</a></p>
+			<p>&nbsp;</p>
+
+		<h3>5.2 Evènement de clavier (Keyboard Event)</h3>
+			<p>Les évènements de clavier sont activés quand l'utilisateur appuie ou relâche une touche du clavier. </p>
+			<p>&nbsp;</p>
+			<h4>5.2.1 La méthode keypress()</h4>
+		<p>Cette méthode détecte si une touche a été enfoncée. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		var i = 0;<br>		$('input[type=&quot;text&quot;]').<span class="stabilo">keypress</span>(function(){<br>			$(&quot;span&quot;).text(i += 1);<br>			$(&quot;p&quot;).show().fadeOut();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On déclare la variable i et on lui affecte la valeur de zéro.</li>
+			  <li>On cible le champ de texte <strong>$('input[type=&quot;text&quot;]')</strong></li>
+			  <li>On lui applique la méthode <strong>keypress()</strong> qui détecte quand on enfonce une touche.
+				<ul>
+				  <li>La fonction générique lance la suite</li>
+				</ul>
+			  </li>
+			  <li>On cible le span <strong>$(&quot;span&quot;)</strong> pour lui injecter du texte
+				<ul>
+				  <li>Ce texte n'est autre que la variable i qu'on additionne à elle même </li>
+				  <li>i += 1; c'est l'équivalent de i = i + 1;</li>
+				</ul>
+			  </li>
+			  <li>Puis on applique les effets graphique sur &lt;p&gt; avec les mérhodes show() et fadeOut().</li>
+		</ul>
+			<p>La méthode <strong>keypress()</strong> ressemble beaucoup à la méthode <strong>keydown()</strong> à une exception près, les touches modifiées et non-imprimables (Esc, Maj, Suppr, Retour, les flèches ...) ne déclencheront pas l'évènement. </p>
+			<p>Voir la page d'exemple : <a href="example-017.html" class="example-script" target="_blank">Example-017.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.2.2 La méthode keydown()</h4>
+			<p>Cette méthode détecte si n'importe quelle touche a été enfoncée. </p>
+			<pre>	$(document).ready(function(){<br>		var i = 0;<br>		$('input[type=&quot;text&quot;]').<span class="stabilo">keydown</span>(function(){<br>			$(&quot;span&quot;).text(i += 1);<br>			$(&quot;p&quot;).show().fadeOut();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Même méthode que keypress(), mais celle-ci détecte toutes les touches. </p>
+			<p>Voir la page d'exemple : <a href="example-018.html" class="example-script" target="_blank">Example-018.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.2.3 La méthode keyup()</h4>
+			<p>Cette méthode détecte quand la touche a été relaché. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		var i = 0;<br>		$('input[type=&quot;text&quot;]').<span class="stabilo">keyup</span>(function(){<br>			$(&quot;span&quot;).text(i += 1);<br>			$(&quot;p&quot;).show().fadeOut();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Soyez attentif, on peut laisser le bouton enfoncé et c'est seulement quand on relâche que ça compte. </p>
+			<p>Voir la page d'exemple : <a href="example-019.html" class="example-script" target="_blank">Example-019.html</a></p>
+
+			<p>Ensuite les évènement de clavier sont souvent associés aux éléments ayant le focus (là où ça se passe) donc le plus souvent avec les éléments de formulaire. </p>
+			<p>&nbsp;</p>
+		<h3>5.3 Evènement de formulaire (Form Event)</h3>
+			<p>Les évènements de formulaire sont déclanchés lorsque les contrôles de formulaire sont activés ou perdus, lorsqu'une valeur de contrôle de formulaire est modifié par l'utilisateur (entrée un texte par exemple). Les évènements de formulaires les plus courants sont les suivant :</p>
+			<p>&nbsp; </p>
+			<h4>5.3.1 La méthode change()</h4>
+			<p>Cette méthode est associé aux éléments &lt;textarea&gt;&lt;input&gt;&lt;select&gt;. Elle sera activé quand la valeur de l'élément changera. Choisissez un rayon dans le panier :-D</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;select&quot;).<span class="stabilo">change</span>(function(){<br>			var selectedOption = $(this).find(&quot;:selected&quot;).val();<br>			alert(&quot;Vous avez sélectionné - &quot; + selectedOption);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible la balise &lt;select&gt; <strong>$(&quot;select&quot;)</strong> et on lui applique la méthode<strong> change()</strong>
+		<ul>
+			  <li>Au premier changement elle lance la fonction générique</li>
+				</ul>
+			  </li>
+			  <li>On créé une variable <em>selectedOption</em> à laquelle on affecte :
+		<ul>
+			  <li><strong>$(this)</strong> c'est l'objet en cours, c'est à dire <strong>$(&quot;select&quot;).change()</strong></li>
+				  <li>sur lequel on applique la méthode <strong>find()</strong> pour qu'elle cherche la valeur &quot;selected&quot; et donc bien celle qui vient d'être sélectionné dans le menu déroulant.</li>
+				</ul>
+			  </li>
+			  <li>En sortie on utilise la méthode <strong>alert()</strong> qui créé une fenêtre dans laquelle on écrit &quot;<em>Vous avez sélectionné - </em>&quot; + notre variable <em>selectedOption</em>, c'est à dire la valeur sélectionné dans la liste.</li>
+			  <li>C'est nettement plus compliqué à expliquer qu'à faire :-D</li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-020.html" class="example-script" target="_blank">Example-020.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.3.2 La méthode focus()</h4>
+			<p>La méthode <strong>focus()</strong> attache un gestionnaire d'évènement à des éléments selectionnés, c'est-à-dire pointé par défaut ou par l'utilisateur. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;input&quot;).<span class="stabilo">focus</span>(function(){<br>			$(this).next(&quot;span&quot;).show().fadeOut(&quot;slow&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible les champs texte<strong> $(&quot;input&quot;) </strong>en lui appliquant la méthode <strong>focus()</strong>.</li>
+			  <li><strong>$('this)</strong> c'est-à-dire <em>$(&quot;input&quot;).focus()</em>, auquel on applique la méthode <strong>next('span')</strong> ou le premier &lt;span&gt; suivant l'objet + 2 méthodes pour le faire disparaître (<strong>show().fadeOut()</strong>) lentement. </li>
+			  <li>En fait dès qu'on sélectionne le champ, paf il se passe un truc. </li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-021.html" class="example-script" target="_blank">Example-021.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.3.3 La méthode blur()</h4>
+			<p>La méthode <strong>blur()</strong> est complémentaire de la méthode <strong>focus()</strong> puisqu'elle ne s'active que lorsque le focus est perdu. Généralement associé aux évènements de formulaire avec des balises telles que  &lt;textarea&gt; &lt;input&gt; &lt;select&gt;.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;input&quot;).<span class="stabilo">blur</span>(function(){<br>			$(this).next(&quot;span&quot;).show().fadeOut(&quot;slow&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Le comportement est identique à la méthode <strong>focus()</strong> sauf qu'il s'exécute quand il le perd plutôt que lorsqu'il le gagne (le focus hein). </p>
+			<p>Voir la page d'exemple : <a href="example-022.html" class="example-script" target="_blank">Example-022.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.3.4 La méthode submit()</h4>
+			<p>Cette méthode permet de contrôler si l'utilisateur tente de soumettre le formulaire ce qui permet de pouvoir y attacher des fonctions de contrôle le plus souvent. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;form&quot;).<span class="stabilo">submit</span>(function(event){<br>			var regex = /^[a-zA-Z]+$/;<br>			var currentValue = $(&quot;#firstName&quot;).val();<br>			if(regex.test(currentValue) == false){<br>				$(&quot;#result&quot;).html('&lt;p class=&quot;error&quot;&gt;Not valid!&lt;/p&gt;').show().fadeOut(1000);<br>				// Preventing form submission<br>				event.preventDefault();<br>			}<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible le formulaire $('form') sur lequel on applique la méthode <strong>submit()</strong>.
+<ul>
+		  <li>Dans la fonction générique on prend soin de mettre event en paramètre puisqu'on attend que le formulaire soit soumis (évènement de soumission donc). </li>
+				</ul>
+			  </li>
+			  <li>On créé une variable regex avec un filtre d'expression régulière pour filtrer les lettres minuscule et majuscule. </li>
+			  <li>Puis une seconde variable <em>currentValue</em> qui cible l'ID <em>$(&quot;#firstName&quot;)</em> ou plutôt sa valeur <strong>val()</strong>.</li>
+			  <li>On fait un test (méthode <strong>test()</strong>) sur la valeur de l'ID <em>FirstName</em> pour savoir si elle correspond au filtre de la variable  <em>regex</em> (c'est-à-dire des lettres minuscule ou majuscule).
+				<ul>
+			  <li>Si le test répond par true, tout va bien.</li>
+				  <li>Si le test répond par false :</li>
+				  <li>On cible l'ID result $(&quot;#result&quot;) et on applique la méthode<strong> html() </strong>pour écrire du HTML. </li>
+				  <li>Sur ce texte html on ajoute les méthodes <strong>show()</strong> et <strong>fadeOut()</strong> pour le faire apparaître et disparaître au bout de 1000 ms soit 1 seconde. </li>
+				</ul>
+			  </li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-023.html" class="example-script" target="_blank">Example-023.html</a></p>
+
+		<p>&nbsp;</p>
+			<h3>5.4 Evènements de document et de fenêtre (document, window)</h3>
+			<p>&nbsp;</p>
+			<h4>5.4.1 La méthode ready()</h4>
+			<p>La méthode ready() est la première dont on fait connaissance en général avec jQuery. Comme on l'a vu elle permet de vérifié si la page est bien chargé avant de passer à la suite. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).<span class="stabilo">ready</span>(function(){<br>		$(&quot;p&quot;).text(&quot;Le DOM est maintenant chargé et peut être manipulé.&quot;);<br>	});<br>&lt;/script&gt;</pre>
+			<p>Notez juste que la méthode <strong>text()</strong> écrase tout le contenu ;-)</p>
+			<p>Voir la page d'exemple : <a href="example-024.html" class="example-script" target="_blank">Example-024.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.4.2 La méthode resize()</h4>
+			<p>La méthode <strong>resize()</strong> gère les évènements concernant la taille de la fenêtre. Dans notre exemple il suffit de changer la taille de la fenêtre pour récupérer sa taille. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(window).<span class="stabilo">resize</span>(function() {<br>			$(window).bind(&quot;resize&quot;, function(){<br>				$(&quot;p&quot;).text(&quot;Window width: &quot; + $(window).width() + &quot;, &quot; + &quot;Window height: &quot; + $(window).height());<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible l'objet <em>window</em> (pas de guillemets sur un objet, vous avez vu) qui correspond à la fenêtre du navigateur <strong>$(window)</strong> qur lequel on applique la méthode <strong>resize()</strong> qui récupère les informations de taille de fenêtre. <a href="https://developer.mozilla.org/fr/docs/Web/API/Window" target="_blank">https://developer.mozilla.org/fr/docs/Web/API/Window </a></li>
+			  <li>La méthode<strong> bind() </strong>attache un gestionnaire (handler) à un événement, pour le coup &quot;resize&quot;.
+				<ul>
+				  <li>Ce qui signifie que quand on changera la taille de la fenêtre ce sera détecté.</li>
+				  <li>Et donc on pourra écrire dans la balise &lt;p&gt; <strong>$(&quot;p&quot;).text()</strong> (on cible p + méthode <strong>text()</strong> pour écrire dedans). </li>
+				  <li>On écrit du texte <em>&quot;Window width: &quot;</em> concaténé avec le + (plus) suivie de la récupération de la largeur <strong>$(window).width()</strong>, idem pour la hauteur <strong>$(window).height()</strong>. </li>
+				</ul>
+			  </li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-025.html" class="example-script" target="_blank">Example-025.html</a></p>
+			<p>&nbsp;</p>
+			<h4>5.4.3 La méthode scroll()</h4>
+			<p>Cette méthode de gestionnaire d'évènement est attaché en général à la fenêtre (window), un iframe ou un élément. Elle permet de détecter le défilement de la fenêtre du navigateur. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(window).<span class="stabilo">scroll</span>(function() {<br>			$(&quot;p&quot;).show().fadeOut(&quot;slow&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<ul>
+			  <li>On cible l'objet Window <strong>$(window)</strong> auquel on applique la méthode <strong>scroll()</strong>.
+		<ul>
+			  <li>La fonction générique déclenche la suite.</li>
+				  <li>On cible les balises &lt;p&gt; <strong>$(&quot;p&quot;)</strong> auxquelles on applique nos 2 méthodes habituelles, <strong>show()</strong> et <strong>fadeOut()</strong>.</li>
+				</ul>
+			  </li>
+			  <li>Et donc quand ça défilera, le texte apparaîtra et disparaîtra.</li>
+		</ul>
+			<p>Voir la page d'exemple : <a href="example-026.html" class="example-script" target="_blank">Example-026.html</a></p>
+	</section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap06" class="chap06">
+
+	  <h2>6. Afficher / masquer (Show / Hide)</h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+
+			<p>Nous allons regarder brièvement comment utiliser les méthode show() et hide() pour afficher et masquerles éléments. </p>
+			<p>&nbsp;</p>
+
+			<h3>6.1 Comment utiliser show() / hide()</h3>
+			<p>On peut faire deux boutons de base en appliquant simplement la méthode de base.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Hide displayed paragraphs<br>		$(&quot;.hide-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">hide</span>();<br>		}) ;<br>		// Show hidden paragraphs<br>		$(&quot;.show-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">show</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Voir la page d'exemple : <a href="example-027.html" class="example-script" target="_blank">Example-027.html</a></p>
+
+			<p>On peut spécifier des paramètres supplémentaires sur l'effet de masquage pour qu'il soit animé sur une période donnée. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Hide displayed paragraphs<br>		$(&quot;.hide-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">hide()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">hide(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">hide(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">hide(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">hide(2000)</span>;<br>		}) ;<br>		// Show hidden paragraphs<br>		$(&quot;.show-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">show()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">show(&quot;fast&quot;)</span> ;<br>			$(&quot;p.slow&quot;).<span class="stabilo">show(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">show(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">show(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Les valeurs comme slow (lent = 600ms) ou fast (rapide = 200ms) sont simples, les valeurs numériques sont en milliseconde (ms), donc 50ms = 0.05 seconde, et 2000ms = 2 secondes. </p>
+			<p>Voir la page d'exemple : <a href="example-028.html" class="example-script" target="_blank">Example-028.html</a></p>
+			<p>On peut très bien mettre du code à exécuter dans ce genre de fonction.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Display alert message after hiding paragraphs<br>		$(&quot;.hide-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">hide(&quot;slow&quot;, function(){	</span><br>				// Code to be executed<br>				alert(&quot;The hide effect is completed.&quot;);<br>			});<br>		});<br>		// Display alert message after showing paragraphs<br>		$(&quot;.show-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">show(&quot;slow&quot;, function(){</span><br>				// Code to be executed<br>				alert(&quot;The show effect is completed.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Notez la façon dont le paramètre <em>slow</em> est placé entre guillemet quand il n'est plus seul.</p>
+			<p>Voir la page d'exemple : <a href="example-029.html" class="example-script" target="_blank">Example-029.html</a></p>
+			<p>&nbsp;</p>
+
+			<h3>6.2 La méthode toggle()</h3>
+			<p>Il existe une fonction permettant de basculer (<em>to toggle</em> en anglais) d'un état à l'autre et vice versa.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Toggles paragraphs display<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">toggle()</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Voir la page d'exemple : <a href="example-030.html" class="example-script" target="_blank">Example-030.html</a></p>
+			<p>On peut aussi ajouter des paramètres de durée.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Toggles paragraphs with different speeds<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">toggle()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">toggle(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">toggle(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">toggle(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">toggle(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-031.html" class="example-script" target="_blank">Example-031.html</a></p>
+			<p>On peut aussi utilisé les fonctions de rappel (callback).</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Display alert message after toggling paragraphs<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">toggle(1000, function(){</span><br>				// Code to be executed<br>				alert(&quot;L'effet toggle est terminé.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-032.html" class="example-script" target="_blank">Example-032.html</a></p>
+
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap07" class="chap07">
+
+		<h2>7. Effets de fondu (Fade)</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+			<p>Maintenant on va faire fondre les éléments dans jQuery :-D</p>
+			<p>&nbsp;</p>
+			<h3>7.1 L'utilisation de fadeIn() / fadeOut()</h3>
+
+			<p>On utilise ces méthodes pour faire apparaître ou disparaître progressivement des éléments (le fondu). </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Fading out displayed paragraphs<br>		$(&quot;.out-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">fadeOut</span>();<br>		});<br>		// Fading in hidden paragraphs<br>		$(&quot;.in-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">fadeIn</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Utilisation de base des méthodes de fondu en entrée ou en sortie.</p>
+			<p>Voir la page d'exemple : <a href="example-033.html" class="example-script" target="_blank">Example-033.html</a></p>
+
+			<p>Comme toutes les méthodes dans jQuery on peut ajouter des paramètres aux méthodes, en particulier des valeurs temporelles. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Fading out displayed paragraphs with different speeds<br>		$(&quot;.out-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">fadeOut()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">fadeOut(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">fadeOut(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">fadeOut(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">fadeOut(2000)</span>;<br>		});<br>		// Fading in hidden paragraphs with different speeds<br>		$(&quot;.in-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">fadeIn()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">fadeIn(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">fadeIn(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">fadeIn(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">fadeIn(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Voir la page d'exemple : <a href="example-034.html" class="example-script" target="_blank">Example-034.html</a></p>
+
+			<p>Les effets des méthodes fadeIn() et fadeOut() sont similaires aux méthodes show() et hide(). </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+		$(document).ready(function(){<br>	// Display alert message after fading out paragraphs<br>	$(&quot;.out-btn&quot;).click(function(){<br>		$(&quot;p&quot;).<span class="stabilo">fadeOut</span>(&quot;slow&quot;, function(){<br>			// Code to be executed<br>			alert(&quot;The fade-out effect is completed.&quot;);<br>		});<br>	});<br>	// Display alert message after fading in paragraphs<br>	$(&quot;.in-btn&quot;).click(function(){<br>		$(&quot;p&quot;).<span class="stabilo">fadeIn</span>(&quot;slow&quot;, function(){<br>			// Code to be executed<br>			alert(&quot;The fade-in effect is completed.&quot;);<br>		});<br>	});</p>
+		});
+		&lt;/script&gt;
+		</pre>	
+			<p>Voir la page d'exemple : <a href="example-035.html" class="example-script" target="_blank">Example-035.html</a></p>
+			<p>&nbsp;</p>
+
+			<h3>7.2 La méthode fadeToggle()</h3>
+
+			<p><span lang="fr"><span title="">La méthode <strong>fadeToggle()</strong> est utilisée pour afficher ou masquer des éléments par l'animation d'opacité de manière à ce qu'un élément affiché disparaisse et qu'un élément masqué apparaisse</span></span></p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Toggles paragraphs display with fading<br>		$(&quot;.toggle-btn&quot;).click(function() {<br>			$(&quot;p&quot;).<span class="stabilo">fadeToggle</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Voir la page d'exemple : <a href="example-036.html" class="example-script" target="_blank">Example-036.html</a></p>
+			<p>On peu, bien sur, ajouter des paramètres temporels.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Fade Toggles paragraphs with different speeds<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">fadeToggle()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">fadeToggle(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">fadeToggle(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">fadeToggle(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">fadeToggle(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-037.html" class="example-script" target="_blank">Example-037.html</a></p>
+			<p>Et bien sur on peut ajouter une fonction de rappel (callback) qui s'exécute une fois la méthode terminé. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Display alert message after fade toggling paragraphs<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">fadeToggle(1000, function(){</span><br>				// Code to be executed<br>				alert(&quot;L'effet de fondu à bascule est terminé :-D&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-038.html" class="example-script" target="_blank">Example-038.html</a></p>
+		<p>&nbsp;</p>
+
+			<h3>7.3 La méthode fadeTo()</h3>
+			<p><span lang="fr"><span title="">La méthode <strong>fadeTo()</strong> ressemble beaucoup à la méthode <strong>fadeIn()</strong> mais avec une différence - celle-ci vous permet de fondre des éléments à un niveau d'opacité spécifique.</span></span></p>
+			<p><strong>Syntaxe</strong></p>
+			<p class="syntax"> $(selector).fadeTo(speed, opacity, callback);</p>
+			<ul>
+			  <li>Le sélecteur (selector) est la cible sur laquelle appliqué la méthode.</li>
+			  <li>La méthode<strong> fadeTo()</strong> peut prendre 3 paramètres :
+<ul>
+	      <li>Le paramètre de vitesse (speed)</li>
+			      <li>Le paramètre d'opacité (opacity) est obligatoire et doit être défini entre 0 et 1.</li>
+			      <li>La fonction générique de retour (callback).</li>
+		        </ul>
+			  </li>
+	  </ul>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Fade to paragraphs with different opacity<br>		$(&quot;.to-btn&quot;).click(function(){<br>			$(&quot;p.none&quot;).<span class="stabilo">fadeTo(&quot;fast&quot;, 0)</span>;<br>			$(&quot;p.partial&quot;).<span class="stabilo">fadeTo(&quot;slow&quot;, 0.5)</span>;<br>			$(&quot;p.complete&quot;).<span class="stabilo">fadeTo(2000, 1)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>Voir la page d'exemple : <a href="example-039.html" class="example-script" target="_blank">Example-039.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap08" class="chap08">
+
+	<h2>8. Effets de glissement (Slide)</h2>
+	<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+
+		<h3>8.1 Les méthodes slideUp() / slideDown()</h3>
+
+		<p>Les méthode <strong>slideUp() </strong>et <strong>slideDown()</strong> servent à faire glisser vers le haut ou vers le bas les éléments HTML.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Slide up displayed paragraphs<br>		$(&quot;.up-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideUp</span>();<br>		});<br>		// Slide down hidden paragraphs<br>		$(&quot;.down-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideDown</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+		<p>Voir la page d'exemple : <a href="example-040.html" class="example-script" target="_blank">Example-040.html</a></p>
+
+		<p>Comme toutjours on peut ajouter des paramètres temporels</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Sliding up displayed paragraphs with different speeds<br>		$(&quot;.up-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">slideUp()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">slideUp(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">slideUp(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">slideUp(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">slideUp(2000)</span>;<br>		});<br>		// Sliding down hidden paragraphs with different speeds<br>		$(&quot;.down-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">slideDown()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">slideDown(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">slideDown(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">slideDown(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">slideDown(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-041.html" class="example-script" target="_blank">Example-041.html</a></p>
+		<p>Et comme chaque fois une fonction de rappel (callback) peut être spécifiée.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Display alert message after sliding up paragraphs<br>		$(&quot;.up-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideUp(&quot;slow&quot;, function() {</span><br>				// Code to be executed<br>				alert(&quot;Le fondu vers le haut est terminé.&quot;);<br>			});<br>		});<br>		// Display alert message after sliding down paragraphs<br>		$(&quot;.down-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideDown(&quot;slow&quot;, function(){</span><br>				// Code to be executed<br>				alert(&quot;Le fondu vers le bas est terminé.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-042.html" class="example-script" target="_blank">Example-042.html</a></p>
+		<p>&nbsp;</p>
+
+		<h3>8.2 La méthode slideToggle()</h3>
+
+		<p>La méthode <strong>slideToggle()</strong> affiche ou masque un élément au moyen d'une animation de hauteur. Cette méthode bascule entre les méthodes <strong>slideUp()</strong> et <strong>slideDown()</strong>.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Toggles paragraphs display with sliding<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideToggle</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+		<p>Voir la page d'exemple : <a href="example-043.html" class="example-script" target="_blank">Example-043.html</a></p>
+
+		<p>On peut y ajouter des paramètres temporels. Oui je sais c'est un peu répétitif.</p>
+		<pre>	$(document).ready(function(){<br>		// Slide Toggles paragraphs with different speeds<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p.normal&quot;).<span class="stabilo">slideToggle()</span>;<br>			$(&quot;p.fast&quot;).<span class="stabilo">slideToggle(&quot;fast&quot;)</span>;<br>			$(&quot;p.slow&quot;).<span class="stabilo">slideToggle(&quot;slow&quot;)</span>;<br>			$(&quot;p.very-fast&quot;).<span class="stabilo">slideToggle(50)</span>;<br>			$(&quot;p.very-slow&quot;).<span class="stabilo">slideToggle(2000)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+		<p>Voir la page d'exemple : <a href="example-044.html" class="example-script" target="_blank">Example-044.html</a></p>
+		<p>Et devinez, on peut aussi mettre des fonctions de rappel (callback). </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Display alert message after slide toggling paragraphs<br>		$(&quot;.toggle-btn&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideToggle(1000, function(){</span><br>				// Code to be executed<br>				alert(&quot;L'effet de fondu à bascule est terminé.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-045.html" class="example-script" target="_blank">Example-045.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap09" class="chap09">
+
+		<h2>9. Effets d'animation</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p>Comment utiliser jQuery pour animer les propriétés CSS. </p>
+		<p>&nbsp;</p>
+
+			<h3>9.1 La méthode animate()</h3>
+
+			<p>La méthode <strong>animate() </strong>permet de créer des animations personnalisées. Elle est utilisé pour manipuler des propriétés CSS comme<em> height, width, padding, margin, top, left, opacity</em> ... Mais toutes les propriétés CSS ne sont pas prise en charge par jQuery comme les couleurs de fond (il y a un plugin).</p>
+			<p>API Docs: <a href="https://api.jquery.com/animate/#animate-properties-duration-easing-complete" target="_blank">https://api.jquery.com/animate/#animate-properties-duration-easing-complete </a></p>
+			<p><strong>La syntaxe</strong></p>
+		<p class="syntax">$(selector).animate({ properties }, duration, callback);</p>
+		<p>Notez bien les accolades autour des propriétés, les virgules séparant les paramètres.</p>
+			<ul>
+			  <li><strong>selector</strong> : c'est la cible bien sûr, sur laquelle on applique l'animation.</li>
+			  <li><strong>animate()</strong> : notre méthode.</li>
+			  <li><strong>properties</strong> : la ou les propriétés CSS à animer.</li>
+			  <li><strong>duration</strong> : le paramètre de durée (facultatif). Il est spécifié en milliseconde ou avec une chaîne prédéfinie comme <em>slow</em> ou <em>fast</em>.</li>
+			  <li><strong>callback</strong> : la fonction de rappel est facultative. Mais à quoi ça sert un <em>callback</em> ? Et bien à appeller une fonction à la fin de l'animation, ça peut être utile :-) (voir <a href="#chap10">Chap. 10</a>)</li>
+		</ul>
+			<p>Ci-dessous une petite animation qui déplace une image de 300px vers la droite.</p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function() {<br>			$(&quot;img&quot;).<span class="stabilo">animate</span>({<br>				left: 300<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>	
+			<p>En HTML tous les éléments ont une position statique (static) par défaut. Pour pouvoir déplacer un élément il faut donc le définir dans une position relative, fixe ou absolue sinon ça ne bougera pas. </p>
+			<p>Voir la page d'exemple : <a href="example-046.html" class="example-script" target="_blank">Example-046.html</a></p>
+		<p>&nbsp;</p>
+			<h3>9.2 <span lang="fr"><span title="">Animation simultanée de plusieurs propriétés</span></span></h3>
+			<p>Il est possible d'animer plusieurs propriétés d'un élément simultanément avec la méthode <strong>animate()</strong>.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;.box&quot;).<span class="stabilo">animate</span>({<br>				width: &quot;300px&quot;,<br>				height: &quot;300px&quot;,<br>				<span class="stabilo">marginLeft</span>: &quot;150px&quot;,<br>				<span class="stabilo">borderWidth</span>: &quot;10px&quot;,<br>				opacity: 0.5<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Ici toutes les animations sont animées en même temps et sans délais. </p>
+			<p><strong>ATTENTION</strong> : le nom des propriétés doivent être écrit en  <em>lower camel</em> (camelCase), c'est-à-dire <em><strong>fontSize</strong></em> au lieu de <em>font-size, <strong>marginRight</strong> au lieu de margin-right</em> ou <strong><em>borderWith</em></strong> au lieu de <em>border-with</em> ... Ne confondez pas avec le CSS.</p>
+			<p>Ensuite on ne peut pas animer une propriété CSS qui n'aurait pas été définie avant. Si votre élément n'a pas de bordure définie en CSS, cette propriété n'existant pas elle ne pourra pas être animé par jQuery. Vous pouvez simplement la définir par défaut : <em>border:none</em>; ça suffit. </p>
+			<p>Voir la page d'exemple : <a href="example-047.html" class="example-script" target="_blank">Example-047.html</a></p>
+			<p>&nbsp;</p>
+			<h4>9.2.1 Animation en file d'attente</h4>
+			<p>Pour remédier au fait que toutes les animations se déclanchent sumultanément, on peut utiliser le chaînage des animations (nous développerons plus tard) en utilisant ce mode d'écriture :</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;.box&quot;)<br>				.<span class="stabilo">animate</span>({width: &quot;300px&quot;})<br>				.<span class="stabilo">animate</span>({height: &quot;300px&quot;})<br>				.<span class="stabilo">animate</span>({marginLeft: &quot;150px&quot;})<br>				.<span class="stabilo">animate</span>({borderWidth: &quot;10px&quot;})<br>				.<span class="stabilo">animate</span>({opacity: 0.5});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>C'est la même animation que la précédente mais écrite différemment. Au lieu de déclarer les propriétés ensemble, elles sont déclarer individuellement. Elles se déclenchent les unes après les autres. </p>
+		<p>Voir la page d'exemple : <a href="example-048.html" class="example-script" target="_blank">Example-048.html</a></p>
+		<p>&nbsp;</p>
+			<h4>9.2.2 Utilisation des valeurs relatives</h4>
+			<p>On peut aussi utilisé des valeurs relatives au lieu de valeurs fixes. Qu'est ce que ça change ? Et bien essayez sur l'exemple joint, vous verrez qu'on peut additionner ou soustraire des valeurs au nombre actuel. On peut le faire en utilisant un préfixe <strong>+=</strong> pour additionner, <strong>-=</strong> pour soustraire. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;.box&quot;).<span class="stabilo">animate</span>({           <br>				top: &quot;<span class="stabilo">+=</span>50px&quot; ,<br>				left: &quot;<span class="stabilo">+=</span>50px&quot;,<br>				width: &quot;<span class="stabilo">+=</span>50px&quot;,<br>				height: &quot;<span class="stabilo">+=</span>50px&quot;<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-049.html" class="example-script" target="_blank">Example-049.html</a></p>
+			<p>&nbsp;</p>
+			<h4>9.2.3 Utilisation de valeurs prédéfinies</h4>
+			<p>On peut aussi se contenter d'appliquer des comportements comme <em>masquer</em>, <em>afficher</em>, <em>basculer</em>, tout en gardant les valeurs actuelles ou en les ramenant aux valeurs initiales et inversement. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;.box&quot;).<span class="stabilo">animate</span>({<br>				width: <span class="stabilo">'toggle'</span><br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-050.html" class="example-script" target="_blank">Example-050.html</a></p>
+			<p>&nbsp;</p>
+			<h3>9.3 Arrêter une animation </h3>
+			<p>Comment arrêter l'execution d'une animation dans jQuery. </p>
+			<p>&nbsp;</p>
+			<h4>9.3.1 La méthode stop()</h4>
+			<p>La méthode <strong>stop()</strong> permet d'arrêter une animation avant sont achèvement. </p>
+			<p><strong>La syntaxe</strong></p>
+			<p class="syntax">$(selector).stop(stopAll, goToEnd);</p>
+			<ul>
+			  <li><strong>selector</strong> : la cible de l'animation.</li>
+			  <li><strong>stop()</strong> : notre méthode.</li>
+			  <li><strong>stopAll</strong> : paramètre facultatif, permet de préciser si les animation en file d'attente doivent être supprimées ou non. Par défaut ce paramètre est sur false, ce qui signifie que seule l'animation en cours sera arrêtée, les autres s'exécuteront jusqu'à la fin.</li>
+			  <li><strong>goToEnd</strong> : par défaut ur false, permet d'indiquer si l'animation doit être terminée imédiatement. </li>
+			</ul>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Start animation<br>		$(&quot;.start-btn&quot;).click(function(){<br>			$(&quot;img&quot;).animate({&quot;left&quot;: &quot;<span class="stabilo">+=</span>150px&quot;}, 2000);<br>		});<br>		// Stop running animation<br>		$(&quot;.stop-btn&quot;).click(function(){<br>			$(&quot;img&quot;).<span class="stabilo">stop</span>();<br>		});<br>		// Start animation in the opposite direction<br>		$(&quot;.back-btn&quot;).click(function(){<br>			$(&quot;img&quot;).animate({left: &quot;<span class="stabilo">-=</span>150px&quot;}, 2000);<br>		});<br>		// Reset to default<br>		$(&quot;.reset-btn&quot;).click(function(){<br>			$(&quot;img&quot;).animate({left: &quot;50&quot;}, &quot;fast&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-051.html" class="example-script" target="_blank">Example-051.html</a></p>
+			<p>La méthode <strong>stop()</strong> fonctionne pour tous les objets jQuery (slide, fade, show, hide) ainsi que pour les animations personnalisées. Ci-dessous on applique une méthode <strong>stop()</strong> sur une méthode slideToggle(). </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Kill and toggle the current sliding animation<br>		$(&quot;.toggle-btn&quot;).on(&quot;click&quot;, function(){<br>			$(&quot;img&quot;).<span class="stabilo">stop</span>().<span class="stabilo">slideToggle</span>(2000);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-052.html" class="example-script" target="_blank">Example-052.html</a></p>
+			<p><strong>Lisser un effet de survol</strong></p>
+			<p>Quand on a un effet de survol animé avec plusieurs animations en file d'attente qui doivent se déclanchées successivement alors que le curseur de la souris a un mouvement rapide. Cela peut interrompre une animation et faire un mauvais effet graphique. Pour empêcher ce genre de chose et créer un effet de survol plus doux et moins heurté on utilise la méthode <strong>stop(true, true)</strong>. Cette méthode effacera toutes les animations en file d'attente et passera directement à la valeur finale. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;.box&quot;).hover(function(){<br>			$(this).find(&quot;img&quot;).<span class="stabilo">stop(true, true)</span>.fadeOut();<br>		}, function(){<br>			$(this).find(&quot;img&quot;).<span class="stabilo">stop(true, true)</span>.fadeIn();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Non ce n'est pas magique, souvenez vous de la syntaxe et particulièrement des paramètres de <strong>stop()</strong> : <em>stopAll</em> et <em>goToEnd</em>. Ces paramètres sont sur <em>false</em> par défaut mais si on les mets sur <strong><em>true</em></strong> ça donne : </p>
+			<ul>
+			  <li><strong>arrête tout </strong>(<em><strong>stopAll</strong></em>) sous entendu toutes les animations en file d'attente, et</li>
+			  <li> <strong>va à la fin</strong> (<em><strong>goToEnd</strong></em>) donc directement à la dernière animation.</li>
+			</ul>
+			<p>Voir la page d'exemple : <a href="example-053.html" class="example-script" target="_blank">Example-053.html</a></p>
+			<p>C'est une bonne astuce graphique en design d'interaction ça. </p>
+			<p>&nbsp;</p>
+			<h3>9.4 Enchaînement d'animation</h3>
+		<p>On peut enchaîner les méthodes en jQuery pour effectuer plusieurs actions sur un ensemble d'élément en utilisant qu'une seule ligne de code. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>		$(&quot;p&quot;).<span class="stabilo">animate</span>({width: &quot;100%&quot;}).<span class="stabilo">animate</span>({fontSize: &quot;46px&quot;}).<span class="stabilo">animate</span>({borderWidth: 30});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Le chaînage à deux objectif :</p>
+		<ol>
+		  <li>ça la rend le code plus propre et plus facile à lire</li>
+		  <li>le script fonctionnera mieux car le navigateur n'a pas à chercher le même élément plusieurs fois. </li>
+		</ol>
+		<p>Voir la page d'exemple : <a href="example-054.html" class="example-script" target="_blank">Example-054.html</a></p>
+		<p>Le même exemple que précédemment mais écrit plus clairement.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function() {<br>			$(&quot;p&quot;)<br>				.<span class="stabilo">animate</span>({width: &quot;100%&quot;})<br>				.<span class="stabilo">animate</span>({fontSize: &quot;46px&quot;})<br>				.<span class="stabilo">animate</span>({borderWidth: 30});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-055.html" class="example-script" target="_blank">Example-055.html</a></p>
+		<p>Attention cependant, nombre de méthodes en jQuery ne renvoient pas d'objet. Ces méthodes qui attribue une valeur (<strong>setter</strong>)  renvoient un objet jQuery et on peut continuer à l'appeller. Par contre les méthodes qui récupère des valeurs (<strong>getter</strong>), si aucun paramètres n'est transmis à la méthode, celle-ci ne renvoit rien et on ne peut plus l'appeller. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			// ici ça marche puisqu'on transmet une valeur<br>			$(&quot;h1&quot;).<span class="stabilo">html(&quot;Hello World!&quot;)</span>.addClass(&quot;test&quot;);<br>			// ici ça na marche pas puisqu'on ne transmet pas de valeur<br>			$(&quot;p&quot;).<span class="stabilo">html()</span>.addClass(&quot;test&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-056.html" class="example-script" target="_blank">Example-056.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap10" class="chap10">
+
+		<h2>10. Fonction de rappel (callback)</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+
+			<p>Toutes les instructions sont exécuter en jQuery ligne par ligne (séquentiel). Mais les effets peuvent prendre du temps et une animation peut commencer alors que la première est en cours d'exécution. On peut arrêter cela grâce à la fonction de rappel. La fonction de rappel est exécuté dès que l'effet est terminé, elle est toujours le dernier argument de la méthode. </p>
+			<p>Par exemple sur la méthode slideToggle() : <span class="syntax-font">$(selector).slideToggle(duration, callback);</span></p>
+			<p>Illustrons le par un exemple ci-contre. Ce code entraine l'affichage immédiat de l'alerte, il n'attendra pas que l'effet de bascule soit terminé. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>		$(&quot;p&quot;).<span class="stabilo">slideToggle(&quot;slow&quot;)</span>;<br>			alert(&quot;The slide toggle effect has completed.&quot;);<br>		});  <br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-057.html" class="example-script" target="_blank">Example-057.html</a></p>
+			<p>Dans l'exemple suivant on voit bien que la <strong>fonction de rappel</strong> (callback) est appelé seulement quand tous les effets sont terminés par opposition à tout en une fois. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">slideToggle(&quot;slow&quot;, function(){</span><br>				// Le code est exécuté une fois l'effet terminé.<br>				alert(&quot;The slide toggle effect has completed.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-058.html" class="example-script" target="_blank">Example-058.html</a></p>
+			<p>Si vous appliquez la méthode à plusieurs éléments, la fonction de rappel sera appelée une fois pour chacun des éléments spécifiés. Toujour le même exemple mais avec une méthode appliqué à &lt;h1&gt; et &lt;p&gt;. </p>
+			<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(<span class="stabilo">&quot;h1, p&quot;</span>).<span class="stabilo">slideToggle(&quot;slow&quot;, function(){</span><br>				// Code to be executed once effect is complete<br>				alert(&quot;The slide toggle effect has completed.&quot;);<br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+			<p>Voir la page d'exemple : <a href="example-059.html" class="example-script" target="_blank">Example-059.html</a></p>
+			
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap11" class="chap11">
+
+		<h2>11 Getters / Setters </h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+
+		<p><span lang="fr"><span title="">Nous allons maintenant voir comment utiliser jQuery pour <strong>obtenir ou définir le contenu</strong> et les valeurs d'attribut d'un élément, ainsi que la valeur du contrôle de formulaire.</span></span></p>
+		<p>Certaines méthodes de jQuery peuvent être utilisées pour attribuer (set) ou lire (get) des valeurs d'éléments sélectionnés. Cela inclus les méthodes <strong>html()</strong>, <strong>text()</strong>, <strong>val()</strong>, <strong>attr()</strong>. </p>
+		<ul>
+		  <li>Lorsque nous appelons ces méthodes sans utiliser d'arguments elles permettent d'obtenir ou de lire la valeur de l'élément sélectionné (<strong>GET</strong>).</li>
+		  <li>Quand nous les appelons avec une valeur, elles vont assigner (<strong>SET</strong>) la (nouvelle) valeur.</li>
+		</ul>
+		<p>&nbsp;</p>
+		<h3>11.1 La méthode text()</h3>
+		<p>Dans l'exemple suivant nous allons récupéré (<strong>GET</strong>) le contenu des paragraphes.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Récupère les valeurs de tous les paragraphes<br>		$(&quot;.btn-one&quot;).click(function(){<br>			var str = $(&quot;p&quot;).<span class="stabilo">text</span>();<br>			alert(str);<br>		});<br>		// Récupère le contenu du premier paragraphe<br>		$(&quot;.btn-two&quot;).click(function(){<br>			var str = $(&quot;p:first&quot;).<span class="stabilo">text</span>();<br>			alert(str);<br>		});<br>	}) ;<br>&lt;/script&gt;</pre>
+		<p>Notez que la méthode <strong>text(</strong>) n'a pas de valeur, donc là on est bien en position de lire (<strong>GET</strong>) les valeurs des paragraphes. </p>
+		<p>Voir la page d'exemple : <a href="example-060.html" class="example-script" target="_blank">Example-060.html</a></p>
+		<p>A présent nous allons insérer (<strong>SET</strong>) du texte dans les paragraphes. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Set text contents of all paragraphs<br>		$(&quot;.btn-one&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">text(&quot;This is demo text.&quot;)</span>;<br>		});<br>		// Set text contents of the first paragraph<br>		$(&quot;.btn-two&quot;).click(function(){<br>			$(&quot;p:first&quot;).<span class="stabilo">text(&quot;This is another demo text.&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Cela marche aussi avec les méthodes <strong>html()</strong>, <strong>text()</strong>, <strong>val()</strong>, <strong>attr()</strong>. </p>
+		<p>Voir la page d'exemple : <a href="example-061.html" class="example-script" target="_blank">Example-061.html</a></p>
+		<h3><br>
+		  11.2 La méthode html()</h3>
+		<p>La méthode <strong>html()</strong> sert à obtenir le contenu HTML de l'élément visé, ici en position <strong>GET</strong>.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Get HTML contents of first selected paragraph<br>		$(&quot;.btn-one&quot;).click(function(){<br>			var str = $(&quot;p&quot;).<span class="stabilo">html</span>();<br>			alert(str);<br>		});<br>		// Get HTML contents of an element with ID container<br>		$(&quot;.btn-two&quot;).click(function(){<br>			var str = $(&quot;#container&quot;).<span class="stabilo">html</span>();<br>			alert(str);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<ul>
+		  <li>Le premier bouton fait un GET du contenu de la première balise &lt;p&gt;</li>
+		  <li>Le second bouton fait un GET de tout le contenu HTML de  la balise marqué de l'ID #container</li>
+      </ul>
+		<p>Voir la page d'exemple : <a href="example-062.html" class="example-script" target="_blank">Example-062.html</a></p>
+		<p>La méthode <strong>html()</strong> sert à spécifié le contenu HTML de l'élément visé, ici en position <strong>SET</strong> c'est-à-dire quand elle n'est pas vide. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Set HTML contents for document's body<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;body&quot;).<span class="stabilo">html(&quot;&lt;p&gt;Hello World!&lt;/p&gt;&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>On voit bien comment tout le contenu de la page, y compris les balises (et le poème de Rimbaud) a été remplacé par le nouveau code HTML. </p>
+        <p>Voir la page d'exemple : <a href="example-063.html" class="example-script" target="_blank">Example-063.html</a></p>
+		<h3><br>
+		  11.3 La méthode attr()</h3>
+		<p>Avec la méthode <strong>attr()</strong> on cible à obtenir (GET) ou à spécifié (SET) le contenu des attributs de balise. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Get href attribute value of first selected hyperlink<br>		$(&quot;.btn-one&quot;).click(function(){<br>			var str = $(&quot;a&quot;).<span class="stabilo">attr(&quot;href&quot;)</span>;	<br>			alert(str);<br>		});<br>		// Get alt attribute value of an image with ID sky<br>		$(&quot;.btn-two&quot;).click(function(){<br>			var str = $(&quot;img#sky&quot;).<span class="stabilo">attr(&quot;alt&quot;)</span>;<br>			alert(str);<br>		});	<br>	});<br>&lt;/script&gt;</pre>
+		<p>Ici nous sommes dans un usage <strong>GET</strong> de la méthode <strong>attr()</strong> même si elle n'est pas vide. Soyez attentif, elle contient un argument : <em>href</em> pour l'un <em>alt</em> pour l'autre. Cet argument est le nom d'un attribut. </p>
+		<p>Voir la page d'exemple : <a href="example-064.html" class="example-script" target="_blank">Example-064.html</a></p>
+		<p>Observons à présent la position <strong>SET</strong> de la méthode <strong>attr()</strong>, c'est à dire comment attibuer ou changer la valeur d'un attibut. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Check all the checkboxes<br>		$(&quot;button&quot;).click(function(){<br>			$('input[type=&quot;checkbox&quot;]').<span class="stabilo">attr(&quot;checked&quot;, &quot;checked&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <ul>
+          <li>La cible : <strong>$('input[type=&quot;checkbox&quot;]')</strong> les balises input de type checkbox.</li>
+          <li>Puis la méthode comprenant l'<strong>attribut</strong> &quot;checked&quot; puis la <strong>valeur</strong> &quot;checked&quot;. </li>
+        </ul>
+        <p>Observez le changement dans l'inspecteur de votre navigateur, vous verrez apparaître les attributs avec leurs valeurs : <strong>checked=&quot;checked&quot;</strong>. </p>
+        <p>Voir la page d'exemple : <a href="example-065.html" class="example-script" target="_blank">Example-065.html</a> [<a href="images/example-065.jpg" target="_blank" class="example-image">example-image-065.jpg</a>]</p>
+        <p>On peut aussi distribuer plusieurs attributs en même temps avec la position <strong>SET</strong> de <strong>attr()</strong>.</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Add a class and title attribute to all the images<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;img&quot;).<span class="stabilo">attr({</span><br>				<span class="stabilo">&quot;class&quot; : &quot;Nature&quot;,</span><br>				<span class="stabilo">&quot;title&quot; : &quot;Very nice clouds&quot;</span><br>			});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>C'est assez simple, il suffit de lister <em>&quot;attribut&quot; 2 points (:) &quot;valeur&quot;</em> <em>virgule</em> et le suivant. </p>
+        <p>Voir la page d'exemple : <a href="example-066.html" class="example-script" target="_blank">Example-066.html</a> [<a href="images/example-066.jpg" target="_blank" class="example-image">example-image-066.jpg</a>]</p>
+        <p>L'exemple est à examiner dans l'inspecteur du navigateur bien sûr. </p>
+		<h3><br>
+		  11.4 La méthode val()</h3>
+		<p>La méthode <strong>val()</strong> est principalement utilisée pour obtenir ou définir les valeurs d'éléments telles que pour &lt;textarea&gt;, &lt;select&gt; et &lt;input&gt;.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Get value of a text input with ID name<br>		$(&quot;button.get-name&quot;).click(function(){<br>			var name = $('input[type=&quot;text&quot;]#name').<span class="stabilo">val</span>();<br>			alert(name);<br>		});<br>		// Get value of a textarea with ID comment<br>		$(&quot;button.get-comment&quot;).click(function(){<br>			var comment = $(&quot;textarea#comment&quot;).<span class="stabilo">val</span>();<br>			alert(comment);<br>		});<br>		// Get value of a select box with ID city<br>		$(&quot;button.get-city&quot;).click(function(){<br>			var city = $(&quot;select#city&quot;).<span class="stabilo">val</span>();<br>			alert(city);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>On peut voir ci-dessus de quelle manière nous allons cibler les éléments par leur ID et récupérer (<strong>GET</strong>) leur valeur. On utilise le ciblage par <strong><em>élément#id</em></strong> et on lui ajoute la méthode <strong>val()</strong>.</p>
+		<p>Voir la page d'exemple : <a href="example-067.html" class="example-script" target="_blank">Example-067.html</a></p>
+		<p>Dans la position <strong>SET</strong> la méthode <strong>val() </strong>permet d'attribuer une valeur à un élément. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Set value of all the text inputs<br>		$(&quot;button&quot;).click(function(){<br>			var text = $(this).text();<br>			$('input[type=&quot;text&quot;]').<span class="stabilo">val(text)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Dans cet exemple on écrit le texte du bouton dans le champ texte. </p>
+        <p>Voir la page d'exemple : <a href="example-068.html" class="example-script" target="_blank">Example-068.html</a></p>
+			
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap12" class="chap12">
+
+		<h2>12. Insérer du contenu</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p>jQuery donne un certain nombre de techniques pour ajouter du nouveau contenu dans un élément déjà existant, notamment :</p>
+		<ul>
+		  <li>append()</li>
+		  <li>prepend()</li>
+		  <li>html()</li>
+		  <li>text()</li>
+		  <li>before()</li>
+		  <li>after()</li>
+		  <li>wrap()</li>
+		  <li>entre autre ...</li>
+	  </ul>
+		<p>Les méthodes text () et html () ont déjà été abordées, nous allons donc parler des autres.</p>
+		<p>&nbsp;</p>
+
+		<h3>12.1 La méthode append()</h3>
+		<p><span lang="fr"><span title="">La méthode <strong>append()</strong> est utilisée pour insérer <strong>un nouveau contenu à la fin d'un élément</strong></span></span>.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Append all paragraphs<br>		$(&quot;p&quot;).<span class="stabilo">append</span>(' &lt;a href=&quot;#&quot;&gt;read more...&lt;/a&gt;');<br>			// Append an element with ID container<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;#container&quot;).<span class="stabilo">append</span>(&quot;This is demo text.&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+      <ul>
+	      <li>Le premier append()
+	        <ul>
+	          <li>On cible les paragraphes de la page <strong>$(&quot;p&quot;)</strong></li>
+	          <li>Et on leur ajoute un lien &quot;read more...&quot; à la fin de la balise, après le texte.</li>
+            </ul>
+	      </li>
+	      <li>Le second append()
+	        <ul>
+	          <li>Quand on clique sur le bouton cela ajoute du texte (demo) dans l'ID #container.</li>
+	          <li>Ce conteneur (#container) est vide, mais théoriquement le texte est ajouté avant la balise de fermeture. Ajoutez du texte dans le conteneur et vous verrez bien !</li>
+            </ul>
+	      </li>
+      </ul>
+	<p>Voir la page d'exemple : <a href="example-069.html" class="example-script" target="_blank">Example-069.html</a></p>
+	<p>&nbsp;</p>
+		<h3>12.2 La méthode preprend()</h3>
+		<p>La méthode <strong>preprend() </strong>permet d'insérer du contenu après la balise ouvrante et donc avant le contenu existant. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Prepend all paragraphs<br>		$(&quot;p&quot;).<span class="stabilo">prepend</span>(&quot;&lt;strong&gt;Note:&lt;/strong&gt; &quot;);<br>		// Prepend an element with ID container<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;#container&quot;).<span class="stabilo">prepend</span>(&quot;This is demo text.&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+      <ul>
+	      <li>Le premier prepend()
+	        <ul>
+	          <li>On cible les paragraphes de la page $(&quot;p&quot;)</li>
+	          <li>Et on leur ajoute un texte &quot;Note:&quot; juste après la balise ouvrante et avant le texte.</li>
+            </ul>
+        </li>
+	      <li>Le second prepend()
+	        <ul>
+	          <li>Quand on clique sur le bouton cela ajoute du texte (demo) dans l'ID #container.</li>
+	          <li>Ce conteneur (#container) est vide, mais théoriquement le texte est ajouté après la balise de d'ouverture. Ajoutez du texte dans le conteneur et vous verrez !</li>
+            </ul>
+        </li>
+      </ul>
+      <p>Voir la page d'exemple : <a href="example-070.html" class="example-script" target="_blank">Example-070.html</a></p>
+	<p>&nbsp;</p>
+		<h3>12.3 Insertions multiples avec append() et preprend()</h3>
+		<p>Vous avez bien compris que <strong>prepend()</strong> place les éléments au début avant le contenu et<strong> append()</strong> après le contenu. Mais on peut aussi faire des insertions multiples.</p>
+		<pre>	$(document).ready(function(){<br>		var <span class="stabilo-R">newHeading</span> = &quot;&lt;h1&gt;Important Note:&lt;/h1&gt;&quot;;<br>		var <span class="stabilo-G">newParagraph</span> = document.createElement(&quot;p&quot;);<br>		newParagraph.innerHTML = &quot;&lt;em&gt;Lorem Ipsum is dummy text...&lt;/em&gt;&quot;;<br>		var <span class="stabilo-B">newImage</span> = $('&lt;img src=&quot;images/smiley.png&quot; alt=&quot;Symbol&quot;&gt;');<br>		<br>		$(&quot;body&quot;).<span class="stabilo">append</span>(<span class="stabilo-R">newHeading</span>, <span class="stabilo-G">newParagraph</span>, <span class="stabilo-B">newImage</span>);<br>	});<br>&lt;/script&gt;</pre>
+	  <ul>
+		  <li>La 1ère variable <span class="stabilo-R">newHeading</span> contient une balise &lt;h1&gt; avec son contenu.</li>
+		  <li>La 2ème variable <span class="stabilo-G">newParagraph</span> créé d'abord une balise &lt;p&gt; avec la méthode <strong>createElement()</strong>. Puis y insère une balise &lt;em&gt; avec du texte grâce à l'objet <strong>innerHTML</strong>.</li>
+		  <li>La 3ème variable <span class="stabilo-B">newImage</span> stocke une balise image. Oui je sais vous allez me demander pourquoi il y a un $ devant, on verra ça plus loin (pour les pressés :<a href="https://learn.jquery.com/using-jquery-core/dollar-object-vs-function/" target="_blank"> $ vs $()</a>).</li>
+		  <li>Et enfin, on cible la balise body <strong>$(&quot;body&quot;) </strong>et on lui affecte la méthode <strong>append()</strong>.
+<ul>
+	      <li>Cette méthode insère le code avant la balise de fermeture &lt;/body&gt;.</li>
+	      <li>Elle insère d'abord le &lt;h1&gt; issue de la 1ère variable.</li>
+	      <li>puis le paragraphe et ajoute le texte dans ce dernier.</li>
+	      <li>et enfin écrit le code contenu dans la dernière variable faisant apparaître le smiley.</li>
+	        </ul>
+		  </li>
+	  </ul>
+		<p>Voir la page d'exemple : <a href="example-071.html" class="example-script" target="_blank">Example-071.html</a></p>
+		<p>&nbsp;</p>
+		<h3>12.4 La méthode before()</h3>
+		<p>la méthode <strong>before()</strong> est utilisée pour insérer du <strong>contenu devant un élément</strong>. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Add content before an element with ID container<br>		$(&quot;#container&quot;).<span class="stabilo">before</span>(&quot;&lt;p&gt;&amp;mdash; The Beginning &amp;mdash;&lt;/p&gt;&quot;);<br>		// Add content before headings<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">before</span>('&lt;img src=&quot;images/marker-left.gif&quot; alt=&quot;Symbol&quot;&gt;');<br>		});<br>	});<br>&lt;/script&gt;</pre>
+      <ul>
+	      <li>Le premier before()
+	        <ul>
+	          <li>Elle insère du texte <em>&quot;- The Beginning -&quot;</em> avant la balise possédant l'ID #container.</li>
+            </ul>
+	      </li>
+	      <li>Le second before()
+	        <ul>
+	          <li>Elle insère une image juste avant la balise &lt;h1&gt;.</li>
+            </ul>
+	      </li>
+      </ul>
+	<p>Voir la page d'exemple : <a href="example-072.html" class="example-script" target="_blank">Example-072.html</a></p>
+	<p>&nbsp;</p>
+		<h3>12.5 La méthode after()</h3>
+		<p>la méthode <strong>after()</strong> est utilisée pour insérer du <strong>contenu après un élément</strong>. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Add content after an element with ID container<br>		$(&quot;#container&quot;).<span class="stabilo">after</span>(&quot;&lt;p&gt;&amp;mdash; The End &amp;mdash;&lt;/p&gt;&quot;);<br>		// Add content after headings<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">after</span>('&lt;img src=&quot;images/marker-right.gif&quot; alt=&quot;Symbol&quot;&gt;');<br>		});<br>	});<br>&lt;/script&gt;</pre>
+	<p>C'est exactement la même chose qu'avec la méthode <strong>before()</strong> sauf que c'est après l'élément. </p>
+	<p>Voir la page d'exemple : <a href="example-073.html" class="example-script" target="_blank">Example-073.html</a></p>
+	<p>&nbsp;</p>
+		<h3>12.6 Insertions multiples avec before() an after()</h3>
+		<p>De la même manière qu'avec prepend() et append(), les insertions multiples sont possible avec les méthodes <strong>before()</strong> et <strong>after()</strong>. </p>
+	  <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		var <span class="stabilo-R">newHeading</span> = &quot;&lt;h2&gt;Important Note:&lt;/h2&gt;&quot;;<br>		var <span class="stabilo-G">newParagraph</span> = document.createElement(&quot;p&quot;);<br>		newParagraph.innerHTML = &quot;&lt;em&gt;Lorem Ipsum is dummy text...&lt;/em&gt;&quot;;<br>		var <span class="stabilo-B">newImage</span> = $('&lt;img src=&quot;images/smiley.png&quot; alt=&quot;Symbol&quot;&gt;');<br>		<br>		$(&quot;p&quot;).<span class="stabilo">before</span>(<span class="stabilo-R">newHeading</span>, <span class="stabilo-G">newParagraph</span>, <span class="stabilo-B">newImage</span>);<br>	});<br>&lt;/script&gt;</pre>
+      <ul>
+	      <li>La 1ère variable <span class="stabilo-R">newHeading</span> contient une balise &lt;h2&gt; comprenant du texte.</li>
+	      <li>La 2ème variable <span class="stabilo-G">newParagraph</span> créé d'abord une balise &lt;p&gt; avec la méthode <strong>createElement()</strong>. Puis y insère une balise &lt;em&gt; avec du texte grâce à l'objet <strong>innerHTML</strong>.</li>
+	      <li>La 3ème variable <span class="stabilo-B">newImage</span> stocke une balise image.  (core docs :<a href="https://learn.jquery.com/using-jquery-core/dollar-object-vs-function/" target="_blank"> $ vs $()</a>).</li>
+	      <li>Et enfin, on cible la le pragraphe <strong>$(&quot;p&quot;) </strong>et on lui affecte la méthode <strong>before()</strong>.
+	        <ul>
+	          <li>Cette méthode insère le code avant la balise &lt;p&gt; contenant le <em>Lorem ipsum</em>.</li>
+	          <li>Elle insère d'abord le &lt;h2&gt; issue de la 1ère variable.</li>
+	          <li>puis un nouveau paragraphe contenent <em>&quot;Lorem ipsum is dummy text ...&quot;</em>.</li>
+	          <li>et enfin écrit le code contenu dans la dernière variable faisant apparaître le smiley.</li>
+            </ul>
+	        <p>Voir la page d'exemple : <a href="example-074.html" class="example-script" target="_blank">Example-074.html</a></p>
+	        <p>&nbsp;</p>
+		    <h3>12.7 La méthode wrap()</h3>
+		    <p>la méthode <strong>wrap()</strong> est utilisée pour envelopper des structures HTML. C'est-à-dire insérer du <strong>contenu avant et après la cible</strong>, pratique pour ajouter des balises. </p>
+		    <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Wrap elements with class container with HTML<br>		$(&quot;.container&quot;).<span class="stabilo">wrap</span>('&lt;div class=&quot;wrapper&quot;&gt;&lt;/div&gt;');<br>		// Wrap paragraph's content with HTML<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p&quot;).contents().<span class="stabilo">wrap</span>(&quot;&lt;em&gt;&lt;b&gt;&lt;/b&gt;&lt;/em&gt;&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+	    </li>
+	      <li>Le premier wrap()
+	        <ul>
+	          <li>il ajoute une balise &lt;div class=&quot;wrapper&quot;&gt; avant la balise div.container</li>
+	          <li>et la balise fermante après div.container</li>
+            </ul>
+	      </li>
+	      <li>Le second wrap()
+	        <ul>
+	          <li>idem pour le paragraphe &lt;p&gt; auquel on applique la méthode <strong>contents()</strong> (<a href="https://api.jquery.com/contents/#contents" target="_blank">API docs</a>) qui sert à récupérer tous les enfants de ce paragraphe.</li>
+	          <li>On y ajoute la méthode <strong>wrap()</strong> qui elle va envelopper ce contenu par les balises &lt;em&gt;&lt;b&gt; avant et après le contenu. </li>
+            </ul>
+	      </li>
+	      <li>Et la marmotte met le chocolat dans le papier d'alu :-D</li>
+      </ul>
+        <p>Voir la page d'exemple : <a href="example-075.html" class="example-script" target="_blank">Example-075.html</a></p>
+        <p>Un petit schéma pour résumer :</p>
+
+
+          
+      <div class="diagram-bpaa">		
+            <div class="parent">
+              <div class="tag">Élément parent</div>
+              Contenu prédédent l'élément enfant
+              <div class="method">before()</div>
+              <div class="child">
+                <div class="tag">Élément enfant</div>
+                <div class="method">prepend()</div>
+                Contenu de l'élément enfant
+                <div class="method">append()</div>
+              </div>
+              <div class="method">after()</div>
+              Contenu suivant l'élément enfant
+            </div>
+      </div>
+
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap13" class="chap13">
+
+		<h2>13. Supprimer des éléments et des attributs</h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p>Dans cette partie, nous verrons comment jQuery peut être utilisé pour supprimer des éléments HTML, leur contenu, des attributs. Nous utiliserons des méthodes telles que remove(), empty() et unwrap() pour supprimer des éléments ou leur contenu. </p>
+		<p>&nbsp;</p>
+
+		<h3>13.1 La méthode empty()</h3>
+		<p>la méthode <strong>empty()</strong> permet d'élliminer tous les éléments enfants, descendant et leur contenu. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Empty container element<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;.container&quot;).<span class="stabilo">empty</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>On voit comment la balise possédant la classe <em>.container</em> est vidé de son contenu, et de ses balises enfants, par l'action de la méthode <strong>empty(</strong>). </p>
+		<p>Voir la page d'exemple : <a href="example-076.html" class="example-script" target="_blank">Example-076.html</a></p>
+		<p>&nbsp;</p>
+		<h3>13.2 La méthode remove()</h3>
+		<p>Cette méthode supprime tout le DOM de la cible ainsi que les évènements liés. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Removes paragraphs with class &quot;hint&quot; from DOM<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p.hint&quot;).<span class="stabilo">remove</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-077.html" class="example-script" target="_blank">Example-077.html</a></p>
+		<p>On peut aussi écrire ce code comme ceci, en précisant la cible dans la méthode. </p>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Removes paragraphs with class &quot;hint&quot; from DOM<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">remove(&quot;.hint&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-078.html" class="example-script" target="_blank">Example-078.html</a></p>
+        <p>&nbsp;</p>
+		<h3>13.3 La méthode unwrap()</h3>
+		<p>La méthode <strong>unwrap() </strong>permet de supprimer les éléments parents de l'élément DOM spécifié. C'est le contraire de la méthode <strong>wrap()</strong>. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Removes the paragraph's parent element<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">unwrap</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>La cible sont les paragraphes dont on souhaite supprimer le container parent. </p>
+		<p>Voir la page d'exemple : <a href="example-079.html" class="example-script" target="_blank">Example-079.html</a></p>
+		<p>&nbsp;</p>
+		<h3>13.4 La méthode removeAttr()</h3>
+		<p>La méthode <strong>removeAttr()</strong> permet d'éliminer les attributs des balises HTML. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		// Removes the hyperlink's href attribute<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;a&quot;).<span class="stabilo">removeAttr(&quot;href&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>On neutralise le lien par la suppression de l'attribut href de la balise &lt;a&gt;. </p>
+		<p>Voir la page d'exemple : <a href="example-080.html" class="example-script" target="_blank">Example-080.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap14" class="chap14">
+
+		<h2>14. Ajouter et supprimer des classes CSS </h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p class="top">jQuery peut manipuler les classes CSS. Il peut les ajouter, les supprimer et faire la bascule entre deux. Les méthodes sont les suivantes : addClass(), removeClass(), toggleClass(). </p>
+	  <p class="top">&nbsp;</p>
+		<h3>14.1 La méthode addClass()</h3>
+		<p>La méthode addClass() permet d'ajouter au moins une classe CSS à un élément. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">addClass</span>(&quot;page-header&quot;);<br>			$(&quot;p.hint&quot;).<span class="stabilo">addClass</span>(&quot;highlight&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>On notera, pour ceux qui observe à l'inspecteur, que l'ajout de classe CSS n'écrase pas celles qui sont déjà dans la balise. </p>
+		<p>Voir la page d'exemple : <a href="example-081.html" class="example-script" target="_blank">Example-081.html</a></p>
+		<p>On peut aussi ajouter plusieurs classes simultanément. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">addClass(&quot;page-header highlight&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>C'est exactement comme dans le code HTML, simplement les noms de classes qui se succèdent. </p>
+        <p>Voir la page d'exemple : <a href="example-082.html" class="example-script" target="_blank">Example-082.html</a></p>
+		<p>&nbsp;</p>
+		<h3>14.2 La méthode removeClass()</h3>
+		<p>Cette méthode, comme on s'en doute, permet de supprimer une, plusieurs ou toutes les classes CSS d'une balise HTML. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">removeClass</span>(&quot;page-header&quot;);<br>			$(&quot;p&quot;).<span class="stabilo">removeClass</span>(&quot;hint highlight&quot;);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<ul>
+		  <li>Le premier removeClass()
+		    <ul>
+		      <li>On cible le &lt;h1&gt;, on applique la méthode <strong>removeClass()</strong>. On supprime une classe.</li>
+	        </ul>
+		  </li>
+		  <li>Le second removeClass()
+		    <ul>
+		      <li>On cible le &lt;p&gt;, on applique la méthode <strong>removeClass()</strong>. On supprime plusieurs classes.</li>
+	        </ul>
+		  </li>
+	  </ul>
+		<p>Voir la page d'exemple : <a href="example-083.html" class="example-script" target="_blank">Example-083.html</a></p>
+		<p>Quand cette méthode est employé sans argument, elle supprime la totalité des classes présentes. </p>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;h1&quot;).<span class="stabilo">removeClass</span>();<br>			$(&quot;p&quot;).<span class="stabilo">removeClass</span>();<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-084.html" class="example-script" target="_blank">Example-084.html</a>        </p>
+        <p>&nbsp;</p>
+		<h3>14.3 La méthode toggleClass()</h3>
+		<p>La méthode <strong>toggleClass()</strong> ajoute ou supprime au moins une classe de l'élément concerné de telle manière que, si la classe est active elle sera supprimé, et si elle n'y est pas elle sera ajouté. On retrouve la bascule entre deux états. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).click(function(){<br>			$(this).<span class="stabilo">toggleClass(&quot;highlight&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-085.html" class="example-script" target="_blank">Example-085.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap15" class="chap15">
+
+		<h2>15. Get / Set des propriétés CSS</h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p class="top">jQuery permet de définir des propriétés de style CSS directement à un élément HTML qui n'ont pas été définis, qui n'ont pas été définis dans une feuille de style ou qui ne sont pas simple à définir. </p>
+		<p class="top">&nbsp;</p>
+		<h3>15.1 La méthode css()</h3>
+		<p>L'utilisation de la méthode <strong>css() </strong>est très simple. On passe en paramètre les propriétés CSS que l'on souhaite	appliqué à l'élément HTML.</p>
+		<p><strong>Syntaxe</strong></p>
+		<p class="syntax">$(selector).css("propertyName");	  </p>
+	  <p>On cible le sélecteur, on applique la méthode <strong>css()</strong> et on lui passe en paramètre les propriétés CSS.</p>
+	  <p>&nbsp;</p>
+		<h3>15.2 Obtenir (get) une valeur de propriété CSS</h3>
+		<p>Dans cet exemple on va voir comment la méthode <strong>css() </strong>en position <strong>GET</strong> peut récupérer la valeur calculée de la couleur de fond des carrés de couleurs. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;div&quot;).click(function(){<br>		var color = $(this).<span class="stabilo">css(&quot;background-color&quot;)</span>;<br>			$(&quot;#result&quot;).html(color);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+      <ul>
+	      <li>On cible les balises &lt;div&gt; avec la méthode <strong>click()</strong> pour transformer chaque carré en bouton.</li>
+	      <li>On créé une variable <em>color</em> qui reprend l'élément cliqué grâce à <strong>$('this')</strong>,
+	        <ul>
+	          <li>sur lequel on applique la méthode <strong>css()</strong> qui prend comme argument le nom d'une propriété CSS :<em> background-color</em>.</li>
+	          <li>ça veut dire que lorsqu'on va cliqué sur un carré de couleur (div) on va demander la valeur calculée de la couleur de fond. </li>
+            </ul>
+	      </li>
+	      <li>On cible l'ID #result pour afficher le résultat, c'est-à-dire la couleur RGB du background-color. La réponse est dite calculée parce qu'elle est retourné en RGB quelquesoit la façon dont elle a été écrite au départ (red, #FF0000, rgb(255,0,0)...). </li>
+      </ul>
+	<p>Voir la page d'exemple : <a href="example-086.html" class="example-script" target="_blank">Example-086.html</a></p>
+	<p>&nbsp;</p>
+		<h3>15.3 Définir (set) une valeur et propriété CSS</h3>
+		<p>La méthode <strong>css()</strong> peut aussi appliqué des propriétés CSS en position <strong>SET</strong>, c'est-à-dire en passant une propriété et sa valeur. </p>
+		<p><strong>Syntaxe</strong></p>
+		<p class="syntax">$(selector).css("propertyName", "value");</p>
+		<p>On cible le sélecteur, on applique la méthode <strong>css()</strong> et on lui passe en paramètre le nom de la <strong>propriété</strong> CSS suivi de sa <strong>valeur</strong>. </p>
+		<p>Dans cet exemple nous allons appliquer la couleur de fond rouge au click de souris. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;.box&quot;).click(function(){<br>			$(this).<span class="stabilo">css(&quot;background-color&quot;, &quot;red&quot;)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+	<p>Voir la page d'exemple : <a href="example-087.html" class="example-script" target="_blank">Example-087.html</a></p>
+	<p>&nbsp;</p>
+		<h3>15.4 Définir (set) de multiple valeurs et propriétés CSS</h3>
+		<p>Plusieurs propriétés CSS peuvent définies simultanément à l'aide de la méthode <strong>css()</strong>.</p>
+		<p><strong>La syntaxe</strong></p>
+		<p class="syntax">$(selector).css({"propertyName":"value", "propertyName":"value", ...});</p>
+		<p>On ajoute simplement un couple <em>&quot;nom-de-propriété-css&quot; : &quot;valeur&quot;</em> séparé par une virgule. </p>
+		<p>Comme on peut le voir dans l'exemple suivant.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;p&quot;).<span class="stabilo">css</span>({<span class="stabilo">&quot;background-color&quot;: &quot;yellow&quot;</span>, <span class="stabilo">&quot;padding&quot;: &quot;20px&quot;</span>});<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-088.html" class="example-script" target="_blank">Example-088.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap16" class="chap16">
+
+		<h2>16. Les dimensions</h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p class="top">Il existe dans jQuery plusieurs méthodes pour obtenir les dimensions de la largeur et de la hauteur d'un élément HTML : height(), outerHeight(), innerHeight(), width(), outerWidth(), innerWidth(). </p>
+		<p class="top">&nbsp;</p>
+		<h3>16.1 Les méthodes width(), height()</h3>
+		<p>Les méthodes <strong>width()</strong> et<strong> height()</strong> permettent de définir la largeur et la hauteur d'un élément à l'exclusion de la bordure (<strike>border</strike>), des marges intérieures (<strike>padding</strike>) et extérieures (<strike>margin</strike>). En position <strong>GET</strong> on peut donc récupérer les dimensions d'une boîte, par exemple. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			var divWidth = $(&quot;#box&quot;).<span class="stabilo">width</span>();<br>			var divHeight = $(&quot;#box&quot;).<span class="stabilo">height</span>();<br>			$(&quot;#result&quot;).html(&quot;Width: &quot; + divWidth + &quot;, &quot; + &quot;Height: &quot; + divHeight);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-089.html" class="example-script" target="_blank">Example-089.html</a> [<a href="images/example-089-1.jpg" target="_blank" class="example-image">example-089-1.jpg</a>, <a href="images/example-089-2.jpg" target="_blank" class="example-image">example-089-2.jpg</a>]</p>
+		<p>Mais inversement, en position <strong>SET</strong>, en précisant des valeurs on peux affecter la taille de la boîte.</p>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;#box&quot;).<span class="stabilo">width(600)</span>.<span class="stabilo">height(100)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Même si l'unité n'est pas précisé, on aura compris qu'il s'agit de pixels. </p>
+        <p>Voir la page d'exemple : <a href="example-090.html" class="example-script" target="_blank">Example-090.html</a> [<a href="images/example-090-1.jpg" target="_blank" class="example-image">example-090-1.jpg</a>, <a href="images/example-090-2.jpg" target="_blank" class="example-image">example-090-2.jpg</a>]</p>
+        <p>&nbsp;</p>
+		<h3>16.2 Les méthodes innerWidth(), innerHeight()</h3>
+		<p>Pour définir la largeur et la hauteur intérieure nous utiliserons les méthodes <strong>innerWidth()</strong> et <strong>innerHeight()</strong>. Elles incluent les marges intérieures (padding) mais excluent les marges extérieures (<strike>margin</strike>) et la bordure (<strike>border</strike>). En position GET on obtient les valeurs de la taille de la boîte auxquelles on ajoute celles des marges intérieures. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>		var divWidth = $(&quot;#box&quot;).<span class="stabilo">innerWidth</span>();<br>		var divHeight = $(&quot;#box&quot;).<span class="stabilo">innerHeight</span>();<br>		$(&quot;#result&quot;).html(&quot;Inner Width: &quot; + divWidth + &quot;, &quot; + &quot;Inner Height: &quot; + divHeight);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-091.html" class="example-script" target="_blank">Example-091.html</a> [<a href="images/example-091-1.jpg" target="_blank" class="example-image">example-091-1.jpg</a>, <a href="images/example-091-2.jpg" target="_blank" class="example-image">example-091-2.jpg</a>]</p>
+		<p>On peut aussi, en position SET, attribuer des valeurs aux marges intérieures.</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;#box&quot;).<span class="stabilo">innerWidth(200)</span>.<span class="stabilo">innerHeight(100)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-092.html" class="example-script" target="_blank">Example-092.html</a> [<a href="images/example-092-1.jpg" target="_blank" class="example-image">example-092-1.jpg</a>, <a href="images/example-092-2.jpg" target="_blank" class="example-image">example-092-2.jpg</a>]</p>
+		<p>&nbsp;</p>
+		<h3>16.3 Les méthodes outerWidth, outerHeight()</h3>
+		<p>Les méthodes <strong>outerWidth()</strong> et <strong>outerHeight()</strong> permettent de récupérer les tailles extérieures de la boîte, en position <strong>GET</strong>, ce qui inclu la marge intérieure (padding) et la bordure (border) mais exclu la marge extérieure (<strike>margin</strike>).</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			var divWidth = $(&quot;#box&quot;).<span class="stabilo">outerWidth</span>();<br>			var divHeight = $(&quot;#box&quot;).<span class="stabilo">outerHeight</span>();<br>			$(&quot;#result&quot;).html(&quot;Outer Width: &quot; + divWidth + &quot;, &quot; + &quot;Outer Height: &quot; + divHeight);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-093.html" class="example-script" target="_blank">Example-093.html</a> [<a href="images/example-093-1.jpg" target="_blank" class="example-image">example-093-1.jpg</a>, <a href="images/example-093-2.jpg" target="_blank" class="example-image">example-093-2.jpg</a>]</p>
+		<p>Pour récupérer la totalité de la taille extérieure de la boîte, c'est à dire la taille de la boîte avec la marge intérieure (padding), la bordure (border) et la marge extérieure (margin) vous devez mettre en paramètre <em><strong>true</strong></em> à la méthode. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			var divWidth = $(&quot;#box&quot;).<span class="stabilo">outerWidth(true)</span>;<br>			var divHeight = $(&quot;#box&quot;).<span class="stabilo">outerHeight(true)</span>;<br>			$(&quot;#result&quot;).html(&quot;Outer Width: &quot; + divWidth + &quot;, &quot; + &quot;Outer Height: &quot; + divHeight);<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-094.html" class="example-script" target="_blank">Example-094.html</a>  [<a href="images/example-094-1.jpg" target="_blank" class="example-image">example-094-1.jpg</a>, <a href="images/example-094-2.jpg" target="_blank" class="example-image">example-094-2.jpg</a>]</p>
+        <p>Et bien bien en position SET on peut définir les marges extérieures en passant une valeur à la méthode. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;button&quot;).click(function(){<br>			$(&quot;#box&quot;).<span class="stabilo">outerWidth(400)</span>.<span class="stabilo">outerHeight(300)</span>;<br>		});<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-095.html" class="example-script" target="_blank">Example-095.html</a> [<a href="images/example-095-1.jpg" target="_blank" class="example-image">example-095-1.jpg</a>, <a href="images/example-095-2.jpg" target="_blank" class="example-image">example-095-2.jpg</a>]</p>
+        <p><strong>Résumé</strong></p>
+        <table width="800" border="1" cellspacing="0" cellpadding="2">
+          <caption>
+            Calcul de la dimension du modèle de boîte
+          </caption>
+          <tbody>
+            <tr>
+              <th width="240" bgcolor="#D2D2D2" scope="col">Méthode</th>
+              <th width="110" align="center" bgcolor="#D2D2D2" scope="col">boîte</th>
+              <th width="110" align="center" bgcolor="#D2D2D2" scope="col">marge int</th>
+              <th width="110" align="center" bgcolor="#D2D2D2" scope="col">bordure</th>
+              <th width="110" align="center" bgcolor="#D2D2D2" scope="col">marge ext</th>
+            </tr>
+            <tr>
+              <td width="240" align="center"><strong>Calcul de la largeur</strong></td>
+              <td width="110" align="center"><strong>Box</strong></td>
+              <td width="110" align="center"><strong>padding</strong></td>
+              <td width="110" align="center"><strong>border</strong></td>
+              <td width="110" align="center"><strong>margin</strong></td>
+            </tr>
+            <tr>
+              <td width="240">width()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">innerWidth()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">outerWidth()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">outerWidth(true)</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+            </tr>
+            <tr>
+              <td width="240" align="center"><strong>Calcul de la hauteur</strong></td>
+              <td width="110" align="center"><strong>Box</strong></td>
+              <td width="110" align="center"><strong>padding</strong></td>
+              <td width="110" align="center"><strong>border</strong></td>
+              <td width="110" align="center"><strong>margin</strong></td>
+            </tr>
+            <tr>
+              <td width="240">height()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">innerHeight()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">outerHeight()</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="no">non</td>
+            </tr>
+            <tr>
+              <td width="240">outerHeight(true)</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+              <td width="110" align="center" class="yes">oui</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>&nbsp;</p>
+		<figure>
+		  <img src="images/jquery-width-height.png" width="563" height="432" alt="jQuery Width and Height - Dimensions"/>
+		  <figcaption>src: <small><a href="https://www.tutorialkart.com/jquery/?tutorial=jquery-width-height">jQuery Width and Height of HTML Element - Examples</a></small></figcaption>
+		</figure>
+      <p><strong>En pratique</strong></p>
+      <p>Pour une boîte de 300 x 200 pixels avec un padding à 10px, une bordure à 5px et un margin à 20px. </p>
+      <table border="1" cellspacing="0" cellpadding="2">
+        <tbody>
+          <tr>
+            <th width="180" scope="col">Méthode</th>
+            <th width="90" scope="col">width</th>
+            <th width="90" scope="col">height</th>
+            <th width="90" scope="col">padding</th>
+            <th width="90" scope="col">border</th>
+            <th width="90" scope="col">margin</th>
+            <th width="120" scope="col">total</th>
+          </tr>
+          <tr>
+            <td width="180">width()</td>
+            <td width="90" align="center" class="yes">300</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="no">10</td>
+            <td width="90" align="center" class="no">5</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">300</td>
+          </tr>
+          <tr>
+            <td width="180">height()</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">200</td>
+            <td width="90" align="center" class="no">10</td>
+            <td width="90" align="center" class="no">5</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">200</td>
+          </tr>
+          <tr>
+            <td width="180">innerWidth()</td>
+            <td width="90" align="center" class="yes">300</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="no">5</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">320</td>
+          </tr>
+          <tr>
+            <td width="180">innerHeight()</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">200</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="no">5</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">220</td>
+          </tr>
+          <tr>
+            <td width="180">outerWidth()</td>
+            <td width="90" align="center" class="yes">300</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="yes">5x2</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">330</td>
+          </tr>
+          <tr>
+            <td width="180">outerHeight()</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">200</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="yes">5x2</td>
+            <td width="90" align="center" class="no">20</td>
+            <td width="120" align="center">230</td>
+          </tr>
+          <tr>
+            <td width="180">outerWidth(true)</td>
+            <td width="90" align="center" class="yes">300</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="yes">5x2</td>
+            <td width="90" align="center" class="yes">20x2</td>
+            <td width="120" align="center">370</td>
+          </tr>
+          <tr>
+            <td width="180">outerHeight(true)</td>
+            <td width="90" align="center">&nbsp;</td>
+            <td width="90" align="center" class="yes">200</td>
+            <td width="90" align="center" class="yes">10x2</td>
+            <td width="90" align="center" class="yes">5x2</td>
+            <td width="90" align="center" class="yes">20x2</td>
+            <td width="120" align="center">270</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Pour rappel le modèle de boîte (<em>Box Model</em>) définition : <a href="https://www.w3.org/TR/CSS22/box.html" target="_blank">https://www.w3.org/TR/CSS22/box.html</a></p>
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap17" class="chap17">
+		<h2>17. Parcourir le DOM </h2>
+		<span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p>Nous allons voir, à présent, comment parcourir le DOM grâce à jQuery.</p>
+		<p><span lang="fr"><span title="">Toutes les interactions des utilisateurs sur un site Web sont dictées par des événements.</span></span> Le DOM a été standardisé par le W3C (<a href="https://www.w3.org/TR/DOM-Level-3-Events/" target="_blank">UI Events</a>). Chaque fois qu'un évènement (souris, clavier) se produit un objet (event / évènement) est créé. Le standard le divise en trois phases d'évènement :</p>
+		<ol>
+		  <li><strong>la phase de capture</strong> : l'objet évènement se propage par les ancêtres de la cible en partant de la fenêtre (Window) jusqu'aux parents (parent) de la cible.</li>
+		  <li><strong>la phase de ciblage</strong> : l'objet évènement arrive sur sa cible et s'arrête. </li>
+		  <li><strong>la phase à bulle</strong> : l'objet évènement se propage en ordre inverse des ancêtres de la cible en commançant par les parents (parent) et finissant par la fenêtre (window). </li>
+	  </ol>
+		<figure>
+		  <img src="images/figure-dom-event-flow.png" alt="">
+			<figcaption>src: <a href="https://www.w3.org/TR/DOM-Level-3-Events/#figure-dom-event-flow" target="_blank">https://www.w3.org/TR/DOM-Level-3-Events/#figure-dom-event-flow</a></figcaption>
+		</figure>
+		<p>On ne va pas trop théoriser sur le fonctionnement des évènements, mais le parcours du DOM doit être en tête. Cet <em>allez retour</em> <strong>window --&gt; document --&gt; html --&gt; body --&gt; la cible</strong> et on remonte, vous ne devez pas l'oublier. Tous les évènements fonctionnent comme ça à moins d'être interrompu par un script. La traversée du DOM par jQuery est une fonctionnalité primordiale que l'on doit maîtriser pour en tirer parti. </p>
+		<p>Exemple d'arbre HTML :</p>
+		<pre>&lt;body&gt;<br>	&lt;div class=&quot;container&quot;&gt;<br>		&lt;h1&gt;Hello World&lt;/h1&gt;<br>		&lt;p&gt;This is an &lt;em&gt;simple paragraph&lt;/em&gt;.&lt;/p&gt;<br>		&lt;ul&gt;<br>			&lt;li&gt;Item One&lt;/li&gt;<br>			&lt;li&gt;Item Two&lt;/li&gt;<br>		&lt;/ul&gt;<br>	&lt;/div&gt;<br>&lt;/body&gt;</pre>
+		<p>On peut présenter le code ci-dessus comme ceci :</p>
+		<ul>
+		  <li>&lt;body&gt; est le parent de &lt;div&gt; et l'ancêtre de tout ce qu'il contient.</li>
+		  <li>&lt;div&gt; est le parent de &lt;p&gt;, &lt;h1&gt;, &lt;ul&gt; ... C'est aussi l'enfant de &lt;body&gt;.</li>
+		  <li>Les éléments &lt;h1&gt;, &lt;p&gt;, &lt;ul&gt; sont tous frères car ils sont sous le même parent.</li>
+		  <li>&lt;h1&gt; est un enfant de &lt;div&gt; et également un descendant de &lt;body&gt;. il n'a pas d'enfant.</li>
+		  <li>&lt;p&gt; est un parent de &lt;em&gt;, un enfant de &lt;div&gt; et un descendant de &lt;body&gt;.</li>
+		  <li>&lt;em&gt; est également un descendant de &lt;div&gt; et &lt;body&gt;.</li>
+		  <li>&lt;ul&gt; est le parent des éléments &lt;li&gt;, l'enfant de &lt;div&gt; et le descendant de &lt;body&gt;.</li>
+		  <li>Les éléments &lt;li&gt; sont tous les enfants de &lt;ul&gt;, descendants de &lt;body&gt; et de &lt;div&gt; et de plus ils sont tous frères et soeurs (!). </li>
+	  </ul>
+		<p>Je pense que l'illustration généalogique est bien comprise ;-)</p>
+		<p>Maintenant que vous comprenez mieux les relations entre les éléments de l'arborescence du DOM, nous allons commencez à comprendre le fonctionnement de déplacement. Comment se déplacer latéralement, monter, descendre dans un arbre DOM avec jQuery ?</p>
+	  <p>&nbsp;</p>
+
+		<h3>17.1 Les ancêtres </h3>
+		<p>Commençons logiquement dans notre parcours par la relation  aux ancêtres : parent, grand-parents, arrières-grands-parents ... Il y a plusieurs méthodes dans jQuery pour détecter les ancêtres sur un ou plusieurs niveaux pour remonter la hiérarchie, les principales sont parent(), parents() et parentsUntil(). </p>
+		<p>&nbsp;</p>
+		<h4>17.1.1 La méthode parent()</h4>
+        <p>La méthode <strong>parent()</strong> est utilisé pour obtenir le <strong>parent direct</strong> de l'élément spécifié. </p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;li&quot;).<span class="stabilo">parent</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>Ci-dessus on ajoute une classe .<em>highlight</em> au parent direct de &lt;li&gt; qui n'est autre que &lt;ul&gt;.</p>
+        <p>Voir la page d'exemple : <a href="example-096.html" class="example-script" target="_blank">Example-096.html</a></p>
+        <p>&nbsp;</p>
+		<h4>17.1.2 La méthode parents()</h4>
+		<p>La méthode <strong>parents()</strong> est utilisé pour obtenir <strong>tous les parents et les ancêtres</strong> de l'élément. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;li&quot;).<span class="stabilo">parents</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Ci-dessus on ajoute une classe .<em>frame</em> aux parents et ancêtres qui prennent ainsi un cadre vert. </p>
+		<p>Voir la page d'exemple : <a href="example-097.html" class="example-script" target="_blank">Example-097.html</a></p>
+		<p>Devant la pléthore de parent on peut cibler bien sur :-D</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		var arr = $(&quot;li&quot;).<span class="stabilo">parents(&quot;div&quot;)</span>.addClass(&quot;frame&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>Voir la page d'exemple : <a href="example-098.html" class="example-script" target="_blank">Example-098.html</a></p>
+		<p>&nbsp;</p>
+	  <h4>17.1.3 La méthode parentsUntil()</h4>
+	<p>La méthode <strong>parentsUntil()</strong> est utilisé pour sélectionner tous les ancêtres d'un élément mais sans inclure cet élément. Ou si vous préférez tous les ancêtres entre ces deux éléments. Ce sera plus clair avec un exemple :</p>
+	<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;li&quot;).<span class="stabilo">parentsUntil(&quot;html&quot;)</span>.addClass(&quot;frame&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>La méthode cible la balise &lt;li&gt; sur laquelle la méthode <strong>parentsUntil()</strong> est appliqué avec le paramètre &quot;html&quot;. Cela signifie donc que tous les ancêtres de &lt;li&gt; sont sélectionné sauf &lt;html&gt;. On peut le lire comme ça :<strong> les parents de &lt;html&gt; jusqu'à &lt;li&gt;</strong>, c'est-à-dire &lt;ul&gt;&lt;div&gt;&lt;body&gt;.</p>
+	<p>Voir la page d'exemple : <a href="example-099.html" class="example-script" target="_blank">Example-099.html</a></p>
+	<h4><br>
+	</h4>
+		<h3>17.2 Les enfants </h3>
+		<p>Après les parents vient ensuite les enfants : enfant, petit-enfant, arrière-petit-enfant ... Les méthodes utilisées pour parcourir les descendants sont <strong>find()</strong> et <strong>children()</strong>. </p>
+		<h4>17.2.1 La méthode children()</h4>
+		<p>La méthode <strong>children()</strong> est utilisée pour obtenir les enfants directs de l'élément spécifié. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul&quot;).<span class="stabilo">children</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Dans notre exemple, les enfants direct de &lt;ul&gt; sont les &lt;li&gt; bien sur. </p>
+		<p>Voir la page d'exemple : <a href="example-100.html" class="example-script" target="_blank">Example-100.html</a></p>
+		<p>&nbsp;</p>
+	<h4>17.2.2 La méthode find()</h4>
+	<p>la méthode <strong>find()</strong> est identique à <strong>children()</strong> à une esception près, si <strong>children()</strong> cherche sur le premier niveau, <strong>find()</strong> lui parcourra tous les niveaux descendant jusqu'à trouver sa cible. </p>
+	<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;div&quot;).<span class="stabilo">find(&quot;li&quot;)</span>.addClass(&quot;frame&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<ul>
+	  <li>La cible étant la balise &lt;div&gt; et la méthode cherche les balises &lt;li&gt;.</li>
+	  <li>Les enfants directs de &lt;div&gt; sont &lt;h1&gt;, &lt;p&gt;, ul&gt;. Avec <strong>children()</strong> ça ne marcherait pas.</li>
+	  <li>Mais avec <strong>find()</strong> on peu descendre un niveau plus bas. </li>
+	  </ul>
+	<p>Voir la page d'exemple : <a href="example-101.html" class="example-script" target="_blank">Example-101.html</a></p>
+	<p>On peut aussi utilisé un sélecteur universel pour tout sélectionner :</p>
+    <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;div&quot;).<span class="stabilo">find(&quot;*&quot;)</span>.addClass(&quot;frame&quot;);<br>	});<br>&lt;/script&gt;</pre>
+    <p>Voir la page d'exemple : <a href="example-102.html" class="example-script" target="_blank">Example-102.html</a></p>
+	<h4><br>
+	  </h4>
+		<h3>17.3 La fratrie </h3>
+		<p>Nous allons voir à présent comment parcourir l'arbre du DOM lattéralement. Dans la relation logique, les enfants ont tous le même parent. Les méthodes employées dans les explorations lattérales sont next(), siblings(), nextAll(), nextUntil(), prev(), prevAll(), prevUntil().</p>
+		<p>&nbsp;</p>
+		<h4>17.3.1 La méthode siblings()</h4>
+		<p>la méthode <strong>siblings()</strong>, comme sont nom l'indique, permet d'obtenir tous les éléments de la fratrie de l'élément spécifié. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).<span class="stabilo">siblings</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>Ci-dessus on applique la classe .<em>highlight</em> à tous les frères (et soeur) de la fratrie de la balise &lt;p&gt;.</p>
+	<p>Voir la page d'exemple : <a href="example-103.html" class="example-script" target="_blank">Example-103.html</a></p>
+	<p>&nbsp;</p>
+		<h4>17.3.2 La méthode next()</h4>
+		<p>La méthode <strong>next()</strong> est utilisé pour obtenir le frère qui suit imédiatement (next = suivant). </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).<span class="stabilo">next</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>Dans l'exemple on applique la classe highlight au <strong>frère suivant imédiatement</strong> la balise &lt;p&gt;, c'est donc &lt;ul&gt; et le &lt;p&gt; que j'ai ajouté pour la démonstration.	</p>
+	<p>Voir la page d'exemple : <a href="example-104.html" class="example-script" target="_blank">Example-104.html</a></p>
+	<p>&nbsp;</p>
+		<h4>17.3.3 La méthode nextAll()</h4>
+		<p>La méthode <strong>nextAll(),</strong> comme on s'en doute, sélectionne <strong>tous les frères suivant</strong> l'élément spécifié. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;p&quot;).<span class="stabilo">nextAll</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>Dans l'exemple on applique la classe .<em>highlight</em> à <strong>tous les frères suivant </strong> la balise &lt;p&gt;, c'est donc &lt;ul&gt; et le &lt;p&gt; que j'ai ajouté pour la démonstration. </p>
+	<p>Voir la page d'exemple : <a href="example-105.html" class="example-script" target="_blank">Example-105.html</a></p>
+	<p>&nbsp;</p>
+		<h4>17.3.4 La méthode nextUntill()</h4>
+		<p>La méthode <strong>nextUntill()</strong> sélectionne <strong>tous les frères depuis la cible jusqu'à la balise en paramètre dans la méthode</strong>. Elle renvoit donc tous les frères entre les 2 éléments spécifiés en excluant ces éléments (balises). </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		<span class="stabilo">$(&quot;<strong>h1</strong>&quot;).nextUntil(&quot;<strong>ul</strong>&quot;)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p> Dans notre exemple depuis la cible &lt;h1&gt; jusqu'à &lt;ul&gt; exclu. Alors qu'il y-a-t-il après &lt;h1&gt; et avant &lt;ul&gt; ? et bien &lt;p&gt;.</p>
+	<p>Voir la page d'exemple : <a href="example-106.html" class="example-script" target="_blank">Example-106.html</a></p>
+	<p>&nbsp;</p>
+		<h4>17.3.5 La méthode prev()</h4>
+		<p>La méthode <strong>prev()</strong> (de <em>previous</em> en anglais = précédent) permet d'obtenir le frère imédiatement précédent. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul&quot;).<span class="stabilo">prev</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>Qu'il y a -t-il imédiatement avant &lt;ul&gt; ? Et bien &lt;p&gt;.</p>
+	<p>Voir la page d'exemple : <a href="example-107.html" class="example-script" target="_blank">Example-107.html</a></p>
+	<p>&nbsp;</p>
+		<h4>17.3.6 La méthode prevAll()</h4>
+		<p>La méthode <strong>prevAll()</strong> sélectionne tous les frères (et soeurs) précédant la cible. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul&quot;).<span class="stabilo">prevAll</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+	<p>Voir la page d'exemple : <a href="example-108.html" class="example-script" target="_blank">Example-108.html</a></p>
+	<p>&nbsp;</p>
+	<h4>17.3.7 La méthode prevUntill()</h4>
+		<p>la méthode <strong>prevUntill()</strong> est utilisée pour obtenir les élément précédents qui vont de la cible jusqu'à l'élément indiqué dans la méthode, en excluant les élément spécifiés. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		<span class="stabilo">$(&quot;<strong>ul</strong>&quot;).prevUntil(&quot;<strong>h1</strong>&quot;)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Quel sont les éléments prédédent &lt;ul&gt; et après &lt;h1&gt; ? Les deux &lt;p&gt;. </p>
+		<p>Voir la page d'exemple : <a href="example-109.html" class="example-script" target="_blank">Example-109.html</a></p>
+		
+  </section>
+
+
+	<!-- //////////// section //////////// -->
+	<section id="chap18" class="chap18">
+
+		<h2>18. Filtrage </h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p class="top">Nous allons maintenant utiliser jQuery pour filtrer la sélection des éléments à l'aide des méthodes suivantes :  filter(), first(), last(), slice(), eq(), not(), has(), etc.</p>
+		<h3>18.1 La méthode first()</h3>
+		<p>La méthode <strong>first()</strong> est utilisée pour filtrer le jeu d'éléments correspondant et renvoyer le <strong>premier</strong>.</p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">first</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-110.html" class="example-script" target="_blank">Example-110.html</a></p>
+		<p>&nbsp;</p>
+
+  	  <h3>18.2 La méthode last()</h3>
+		<p>Avec la méthode <strong>last()</strong>, le jeu d'élément correspondant peut être filtré pour renvoyer l'élément final. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">last</span>().addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Voir la page d'exemple : <a href="example-111.html" class="example-script" target="_blank">Example-111.html</a></p>
+		<p>&nbsp;</p>
+		
+		<h3>18.3 La méthode eq()</h3>
+		<p>La méthode <strong>eq()</strong> (equal) permet de filter un jeu d'élément qui renvoit <strong>un seul index</strong>. C'est l'équivalent (lol) de <em>:nth-child</em> (n-ième enfant) en CSS. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">eq(1)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Et à propos on compte à partir de 0 en informatique, mes petits loups, donc si je mets <strong>1</strong> ce sera le deuxième &lt;li&gt;, et si je mets<strong> -1 </strong>ce sera le dernier &lt;li&gt; car le compte commencera de la fin et que le permier élément en partant de la fin est -1 (on ne peut pas faire -0). </p>
+		<p>Voir la page d'exemple : <a href="example-112.html" class="example-script" target="_blank">Example-112.html</a></p>
+		<p>Essayons avec <strong>-2</strong> pour voir :</p>
+      <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">eq(-2)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>On voit bien que c'est le troisième &lt;li&gt; ou le deuxième en partant d'en bas qui a été affécté. </p>
+        <p>Voir la page d'exemple : <a href="example-113.html" class="example-script" target="_blank">Example-113.html</a></p>
+        <p>La  méthode <strong>eq()</strong> (<a href="https://api.jquery.com/eq/" target="_blank">equal</a>) à des petits frères : <strong>gt()</strong> (<a href="https://api.jquery.com/gt-selector/" target="_blank">Greater than</a>) et <strong>lt()</strong> (<a href="https://api.jquery.com/lt-selector/" target="_blank">Less than</a>) qui sont dépréciés aujourd'hui et auxquels il faut préférer <strong>slice()</strong> (slice = tranche).</p>
+		<p>&nbsp;</p>
+		<h3>18.4 La méthode filter()</h3>
+		<p>La méthode <strong>filter()</strong> prend une fonction ou un sélecteur en argument et filtre ensuite le jeu d'élément en fonction du critère donné. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">filter(&quot;:even&quot;)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Ici on applique la classe sur les éléments pair (even). </p>
+		<p>Voir la page d'exemple : <a href="example-114.html" class="example-script" target="_blank">Example-114.html</a></p>
+		<p>On peut aussi transmettre des fonctions :</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">filter(function(index){</span><br>			<span class="stabilo">return index % 2 !== 0;</span><br>		<span class="stabilo">})</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>Ouhais bon, <em> (index % 2)</em> <em>index modulo 2  différent de zéro (!==0)</em>, on va plus vite d'utiliser <em>:odd</em> (impair) :-D</p>
+        <p>Voir la page d'exemple : <a href="example-115.html" class="example-script" target="_blank">Example-115.html</a></p>
+		<p>&nbsp;</p>
+		<h3>18.5 La méthode has()</h3>
+		<p>La méthode <strong>has()</strong> (it has = il a) est utilisée pour filtrer un jeu d'élément correspondant et a renvoyer les éléments pour lesquels l'élément descendant est spécifié. Cela permet de sélectionner dans le jeu d'élément lesquels possèdent l'enfant qu'on recherche. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">has(&quot;ul&quot;)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Ci-dessus on recherche les &lt;li&gt; possédant des &lt;ul&gt;, c'est-à-dire des sous listes, pour leur appliquer la classe .<em>highlight</em>. </p>
+		<p>Voir la page d'exemple : <a href="example-116.html" class="example-script" target="_blank">Example-116.html</a></p>
+		<p>&nbsp;</p>
+		<h3>18.6 La méthode not()</h3>
+		<p>Avec la méthode <strong>not() </strong>(différent de) l'ensemble des éléments peut etre filtré et renvoyer tous les éléments <strong>ne répondant pas</strong> aux conditions spécifiées. </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">not(&quot;:even&quot;)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>On chercher dans les liste &quot;ul li&quot; les éléments <strong>non pair</strong>, c'est-à-dire impair :-)</p>
+		<p>Comme <strong>filter()</strong>, la méthode <strong>not()</strong> peut prendre des fonctions en argument, mais cela fonctionnera en sens inverse de la fonction <strong>filter()</strong>, c'est-à-dire que les éléments ayant réussi le test seront exclus des résultats alors que tout le reste en inclus. </p>
+		<p>Voir la page d'exemple : <a href="example-117.html" class="example-script" target="_blank">Example-117.html</a></p>
+		<p>Allez on essaye avec la fonction de tout à l'heure.</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">not(function(index){</span><br>			<span class="stabilo">return index % 2 !== 0;</span><br>		<span class="stabilo">})</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>On recherche tout ce qui n'est pas pair dans la fratrie &lt;ul&gt;&lt;li&gt;, c'est-à-dire les sections 1 et 3. </p>
+        <p>Voir la page d'exemple : <a href="example-000.html">class="example-script" Example-118.html</a></p>
+		<p>&nbsp;</p>
+		<h3>18.7 La méthode slice()</h3>
+		<p>Avec la méthode <strong>slice() </strong>on peut couper le gâteaux en tranche (lol). Cette méthode accepte des <strong>numéros d'index de début et de fin </strong>comme argument. Le premier numéro donne la position d'où partir et le second la position où ça s'arrête (non inclu). </p>
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">slice(0, 2)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+		<p>Donc une petite tranchette de 0 à 2, soit 0, 1, on s'arrête à 2. </p>
+		<p>Voir la page d'exemple : <a href="example-119.html" class="example-script" target="_blank">Example-119.html</a></p>
+		<p>Essayons avec des valeurs négatives :</p>
+        <pre>&lt;script type=&quot;text/javascript&quot;&gt;<br>	$(document).ready(function(){<br>		$(&quot;ul li&quot;).<span class="stabilo">slice(-2, -1)</span>.addClass(&quot;highlight&quot;);<br>	});<br>&lt;/script&gt;</pre>
+        <p>Donc on part de la fin puisque la première valeur (-2) est négative, et plus précisément du deuxième en partant de la fin. Puis on va à -1 c'est-à-dire le premier élément en partant de la fin. Seul le 3ème élément sera sélectionné. </p>
+        <p>Voir la page d'exemple : <a href="example-120.html" class="example-script" target="_blank">Example-120.html</a></p>
+		
+  </section>
+	
+		<!-- //////////// section //////////// -->
+	<section id="conclusion" class="conclusion">
+
+<h2>Conclusion </h2>
+	  <span class="top"><a href="#top" title="Retour à la table">[&#x2191;]</a></span>
+		<p>Nous avons vu l'ensemble des bases de jQuery concernant les sélecteurs, les évènements, les effets graphiques et interactifs ainsi que l'animation. Nous avons aborder des concepts tel que le chaînage, le callback, les getters et setters, la manipulation du contenu, des CSS et le parcours dans le DOM ainsi que le filtrage.</p>
+		<p>Il reste quelques notions a aborder en particulier avec Ajax, les concepts GET et POST, le no-confict-mode. Tout cela sera aborder dans un contexte concernant le développement d'application Web et mobile dans la prochaine partie. Avant cela je vous engage à faire l'atelier correspondant à ce cours de façon à bien vous approprier le fonctionnement de cette librairie javaScript ainsi que le travail de votre boîte à outil (toolbox). Merci de votre lecture. <span class="font-R">*</span><span class="font-G">*</span><span class="font-B">*</span></p>
+
+	<!-- //////////// FOOTER //////////// -->	
+<footer>2019 &copy; Michel TISSIER</footer>
+
+</div><!-- end wrapper -->
+
+</body>
+</html>

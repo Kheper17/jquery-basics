@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Getters and Setters</title>
+<style type="text/css">	
+	img {position:absolute; top:40px; left:10px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Add a class and title attribute to all the images
+		$("button").click(function(){
+			$("img").attr({
+				"class" : "Nature",
+				"title" : "Very nice clouds"
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<button>Set multi attr</button>
+	<img src="images/sky.jpg" alt="The sky">
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Fading Effects</title>
+<style type="text/css">	
+	button {position:absolute; top:180px}
+	.in-btn {left:80px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Fading out displayed paragraphs with different speeds
+		$(".out-btn").click(function(){
+			$("p.normal").fadeOut();
+			$("p.fast").fadeOut("fast");
+			$("p.slow").fadeOut("slow");
+			$("p.very-fast").fadeOut(50);
+			$("p.very-slow").fadeOut(2000);
+		});
+		// Fading in hidden paragraphs with different speeds
+		$(".in-btn").click(function(){
+			$("p.normal").fadeIn();
+			$("p.fast").fadeIn("fast");
+			$("p.slow").fadeIn("slow");
+			$("p.very-fast").fadeIn(50);
+			$("p.very-slow").fadeIn(2000);
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p class="normal">normal</p>
+	<p class="fast">fast</p>
+	<p class="slow">slow</p>
+	<p class="very-fast">Very fast</p>
+	<p class="very-slow">Very slow</p>
+	<button class="in-btn">Fade in</button>
+	<button class="out-btn">Fade out</button>
+	
+</body>
+</html>

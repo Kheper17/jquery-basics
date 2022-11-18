@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Fading Effects</title>
+<style type="text/css">	
+	button {position:absolute; top:80px}
+	.in-btn {left:80px;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Fading out displayed paragraphs
+		$(".out-btn").click(function(){
+			$("p").fadeOut();
+		});
+		// Fading in hidden paragraphs
+		$(".in-btn").click(function(){
+			$("p").fadeIn();
+		});
+	});
+</script>
+</head>
+<body>
+
+	<p>Hello, World!</p>
+	<button class="in-btn">Fade in</button>
+	<button class="out-btn">Fade out</button>
+	
+</body>
+</html>

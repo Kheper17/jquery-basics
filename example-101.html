@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery Traversing Descendants</title>
+<style type="text/css">
+	* {margin: 10px;}
+	.frame {border: 2px solid green;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("div").find("li").addClass("frame");
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<h1>Hello World</h1>
+		<p>This is a <em>simple paragraph</em>.</p>
+		<ul>
+			<li>Item One</li>
+			<li>Item Two</li>
+		</ul>
+	</div>
+</body>
+</html>

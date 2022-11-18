@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Event</title>
+<style type="text/css">
+	.error {color:red; font-weight: bolder;}
+</style>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("form").submit(function(event){
+			var regex = /^[a-zA-Z]+$/;
+			var currentValue = $("#firstName").val();
+			if(regex.test(currentValue) == false){
+				$("#result").html('<p class="error">Not valid!</p>').show().fadeOut(1000);
+				// Preventing form submission
+				event.preventDefault();
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	
+	<form action="">
+		<input type="text" id="firstName" placeholder="First Name">
+		<input type="submit" value="    ok    ">
+	</form>
+	<div id="result"></div>
+
+</body>
+</html>
